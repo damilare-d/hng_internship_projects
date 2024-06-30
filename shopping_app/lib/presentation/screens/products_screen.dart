@@ -1,25 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/model/product.dart';
 
-class ProductsScreen extends StatefulWidget {
-  @override
-  _ProductsScreenState createState() => _ProductsScreenState();
-}
 
-class _ProductsScreenState extends State<ProductsScreen> {
-  final List<Product> products = [
-    Product(id: '1', name: 'Product 1', price: 10.0),
-    Product(id: '2', name: 'Product 2', price: 20.0),
-    // Add more products here
-  ];
+class ProductsScreen extends StatelessWidget {
+  final List<Product> products;
+  final Function(Product) addToCheckout;
 
-  var checkoutItems;
-
-  void _addToCheckout(Product product) {
-    setState(() {
-      checkoutItems.add(product);
-    });
-  }
+  ProductsScreen({required this.products, required this.addToCheckout});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +18,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
           subtitle: Text('\$${products[index].price.toStringAsFixed(2)}'),
           trailing: IconButton(
             icon: Icon(Icons.add),
-            onPressed: () => _addToCheckout(products[index]),
+            onPressed: () => addToCheckout(products[index]),
           ),
         );
       },

@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app/model/product.dart';
+import 'package:shopping_app/presentation/screens/order_checkout.dart';
 
-import 'order_checkout.dart';
 
-class CheckoutScreen extends StatefulWidget {
-  @override
-  _CheckoutScreenState createState() => _CheckoutScreenState();
-}
+class CheckoutScreen extends StatelessWidget {
+  final List<Product> checkoutItems;
+  final Function(Product) removeFromCheckout;
 
-class _CheckoutScreenState extends State<CheckoutScreen> {
-  var checkoutItems;
-
-  void _removeFromCheckout(Product product) {
-    setState(() {
-      checkoutItems.remove(product);
-    });
-  }
+  CheckoutScreen({required this.checkoutItems, required this.removeFromCheckout});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +22,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 subtitle: Text('\$${checkoutItems[index].price.toStringAsFixed(2)}'),
                 trailing: IconButton(
                   icon: Icon(Icons.remove),
-                  onPressed: () => _removeFromCheckout(checkoutItems[index]),
+                  onPressed: () => removeFromCheckout(checkoutItems[index]),
                 ),
               );
             },
