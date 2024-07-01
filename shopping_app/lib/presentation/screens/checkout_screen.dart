@@ -3,11 +3,22 @@ import 'package:shopping_app/model/product.dart';
 import 'package:shopping_app/presentation/screens/order_checkout.dart';
 
 
-class CheckoutScreen extends StatelessWidget {
+class CheckoutScreen extends StatefulWidget {
   final List<Product> checkoutItems;
   final Function(Product) removeFromCheckout;
 
   CheckoutScreen({required this.checkoutItems, required this.removeFromCheckout});
+
+  @override
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
+}
+
+class _CheckoutScreenState extends State<CheckoutScreen> {
+  void _clearCheckout() {
+    setState(() {
+      widget.checkoutItems.clear();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +26,14 @@ class CheckoutScreen extends StatelessWidget {
       children: [
         Expanded(
           child: ListView.builder(
-            itemCount: checkoutItems.length,
+            itemCount: widget.checkoutItems.length,
             itemBuilder: (ctx, index) {
               return ListTile(
-                title: Text(checkoutItems[index].name),
-                subtitle: Text('\$${checkoutItems[index].price.toStringAsFixed(2)}'),
+                title: Text(widget.checkoutItems[index].name),
+                subtitle: Text('\$${widget.checkoutItems[index].price.toStringAsFixed(2)}'),
                 trailing: IconButton(
                   icon: Icon(Icons.remove),
-                  onPressed: () => removeFromCheckout(checkoutItems[index]),
+                  onPressed: () => widget.removeFromCheckout(widget.checkoutItems[index]),
                 ),
               );
             },
@@ -31,6 +42,7 @@ class CheckoutScreen extends StatelessWidget {
         ElevatedButton(
           child: Text('Place Order'),
           onPressed: () {
+            _clearCheckout();
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => OrderSuccessScreen(),
