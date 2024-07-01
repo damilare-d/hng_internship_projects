@@ -8,18 +8,26 @@ This is a simple shopping app created as part of the HNG Internship Stage One Ta
 - Add and remove products from the checkout list
 - Navigate between the Products and Checkout screens using a bottom navigation bar
 - Place an order and clear the checkout list
-- Add new products through a bottom sheet dialog
+- Add new products through a bottom sheet dialog.
+
+## Demo -video
+
+https://github.com/damilare-d/hng_internship_projects/assets/83401880/58ac1eef-9142-4f69-8197-d3d152e6182d
 
 ## Screenshots
 
 ### Products Screen
-![Products Screen](screenshots/products_screen.png)
+
+
 
 ### Checkout Screen
-![Checkout Screen](screenshots/checkout_screen.png)
+
 
 ### Order Success Screen
-![Order Success Screen](screenshots/order_success_screen.png)
+
+
+## link to apk
+https://drive.google.com/file/d/1tILwB2npwx2Wu3fc9Y7uvjrWDiSdiPzh/view?usp=sharing
 
 ## Setup Instructions
 
