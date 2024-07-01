@@ -36,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _screens = [
@@ -45,9 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shopping App'),
+        title: const Text('Shopping App'),
       ),
       body: _screens[_selectedIndex],
+
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
