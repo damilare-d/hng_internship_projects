@@ -25,7 +25,8 @@ https://github.com/damilare-d/hng_internship_projects/assets/83401880/58ac1eef-9
 
 ### Order Success Screen
 
-
+## appetize.io link
+https://appetize.io/app/v55ln634cr42clsdoi4eqfhn54?device=pixel7&osVersion=13.0
 ## link to apk
 https://drive.google.com/file/d/1tILwB2npwx2Wu3fc9Y7uvjrWDiSdiPzh/view?usp=sharing
 
