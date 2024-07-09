@@ -1,9 +1,7 @@
 import 'package:stacked/stacked.dart';
 import 'package:tombu_shopping_app/app/app.locator.dart';
-import 'package:tombu_shopping_app/app/app.router.dart';
 import 'package:tombu_shopping_app/models/product_model.dart';
 import 'package:tombu_shopping_app/services/api_service.dart';
-import 'package:flutter/material.dart';
 
 class ProductListViewModel extends BaseViewModel {
   final ApiService _apiService = locator<ApiService>();
@@ -12,16 +10,18 @@ class ProductListViewModel extends BaseViewModel {
   List<Product> get products => _products;
   List<bool> _expanded = [];
   int _currentPage = 1;
+  final int _itemsPerPage = 10;
 
   int get currentPage => _currentPage;
 
-  get expanded => _expanded;
+  List<bool> get expanded => _expanded;
 
-  Future<void> fetchProducts() async {
+  Future<void> fetchProducts({int page = 1}) async {
     setBusy(true);
     try {
-      _products = await _apiService.fetchProducts();
+      _products = await _apiService.fetchProducts(page, _itemsPerPage);
       _expanded = List<bool>.filled(_products.length, false);
+      _currentPage = page;
       notifyListeners();
     } catch (e) {
       setError(e.toString());
@@ -37,14 +37,11 @@ class ProductListViewModel extends BaseViewModel {
 
   void previousPage() {
     if (_currentPage > 1) {
-      _currentPage--;
-      fetchProducts();
+      fetchProducts(page: _currentPage - 1);
     }
   }
 
   void nextPage() {
-    _currentPage++;
-    fetchProducts();
+    fetchProducts(page: _currentPage + 1);
   }
-
 }

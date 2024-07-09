@@ -9,10 +9,10 @@ class ProductListView extends StackedView<ProductListViewModel> {
 
   @override
   Widget builder(
-    BuildContext context,
-    ProductListViewModel viewModel,
-    Widget? child,
-  ) {
+      BuildContext context,
+      ProductListViewModel viewModel,
+      Widget? child,
+      ) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Products'),
@@ -20,51 +20,51 @@ class ProductListView extends StackedView<ProductListViewModel> {
       body: viewModel.isBusy
           ? const Center(child: CircularProgressIndicator())
           : viewModel.hasError
-              ? Center(child: Text('Error: ${viewModel.modelError}'))
-              : Column(
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: viewModel.products.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              viewModel.toggleExpanded(index);
-                            },
-                            child: ProductItemWidget(
-                              product: viewModel.products[index],
-                              expanded: viewModel.expanded[index],
-                              onTapIcon: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute<void>(
-                                    builder: (BuildContext context) =>
-                                        ProductView(
-                                            product: viewModel.products[index]),
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: const Icon(Icons.arrow_back),
-                          onPressed: viewModel.previousPage,
+          ? Center(child: Text('Error: ${viewModel.modelError}'))
+          : Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: viewModel.products.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    viewModel.toggleExpanded(index);
+                  },
+                  child: ProductItemWidget(
+                    product: viewModel.products[index],
+                    expanded: viewModel.expanded[index],
+                    onTapIcon: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) =>
+                              ProductView(
+                                  product: viewModel.products[index]),
                         ),
-                        Text('Page ${viewModel.currentPage}'),
-                        IconButton(
-                          icon: const Icon(Icons.arrow_forward),
-                          onPressed: viewModel.nextPage,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: viewModel.previousPage,
+              ),
+              Text('Page ${viewModel.currentPage}'),
+              IconButton(
+                icon: const Icon(Icons.arrow_forward),
+                onPressed: viewModel.nextPage,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
