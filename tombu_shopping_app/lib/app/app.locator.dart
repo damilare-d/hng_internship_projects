@@ -12,7 +12,6 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api_service.dart';
-import '../services/api_service_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -28,6 +27,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => BottomSheetService());
   locator.registerLazySingleton(() => DialogService());
   locator.registerLazySingleton(() => NavigationService());
-  locator.registerLazySingleton(() => ApiServiceService());
-  locator.registerLazySingleton(() => ApiService(apiKey: '4f0a4e3def204d408ed7086ac594092e', appId: 'OH35TILK1CDNBBX', organizationId: 'fdab2dbd5c3142078d6833392bfa666920240707160136587933'));
+  locator.registerLazySingleton(() => ApiService());
 }

@@ -11,8 +11,7 @@ import 'package:stacked/stacked.dart' as _i1;
 import 'package:stacked_services/stacked_services.dart' as _i8;
 import 'package:tombu_shopping_app/models/product_model.dart' as _i7;
 import 'package:tombu_shopping_app/ui/views/home/home_view.dart' as _i2;
-import 'package:tombu_shopping_app/ui/views/product_item/product_item_view.dart'
-    as _i5;
+import 'package:tombu_shopping_app/ui/views/product/product_view.dart' as _i5;
 import 'package:tombu_shopping_app/ui/views/product_list/product_list_view.dart'
     as _i4;
 import 'package:tombu_shopping_app/ui/views/startup/startup_view.dart' as _i3;
@@ -24,13 +23,13 @@ class Routes {
 
   static const productListView = '/product-list-view';
 
-  static const productItemView = '/product-item-view';
+  static const productView = '/product-view';
 
   static const all = <String>{
     homeView,
     startupView,
     productListView,
-    productItemView,
+    productView,
   };
 }
 
@@ -49,8 +48,8 @@ class StackedRouter extends _i1.RouterBase {
       page: _i4.ProductListView,
     ),
     _i1.RouteDef(
-      Routes.productItemView,
-      page: _i5.ProductItemView,
+      Routes.productView,
+      page: _i5.ProductView,
     ),
   ];
 
@@ -73,11 +72,11 @@ class StackedRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i5.ProductItemView: (data) {
-      final args = data.getArgs<ProductItemViewArguments>(nullOk: false);
+    _i5.ProductView: (data) {
+      final args = data.getArgs<ProductViewArguments>(nullOk: false);
       return _i6.MaterialPageRoute<dynamic>(
         builder: (context) =>
-            _i5.ProductItemView(args.product, args.expanded, key: args.key),
+            _i5.ProductView(key: args.key, product: args.product),
         settings: data,
       );
     },
@@ -90,35 +89,30 @@ class StackedRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-class ProductItemViewArguments {
-  const ProductItemViewArguments({
-    required this.product,
-    required this.expanded,
+class ProductViewArguments {
+  const ProductViewArguments({
     this.key,
+    required this.product,
   });
-
-  final _i7.Product product;
-
-  final bool expanded;
 
   final _i6.Key? key;
 
+  final _i7.Product product;
+
   @override
   String toString() {
-    return '{"product": "$product", "expanded": "$expanded", "key": "$key"}';
+    return '{"key": "$key", "product": "$product"}';
   }
 
   @override
-  bool operator ==(covariant ProductItemViewArguments other) {
+  bool operator ==(covariant ProductViewArguments other) {
     if (identical(this, other)) return true;
-    return other.product == product &&
-        other.expanded == expanded &&
-        other.key == key;
+    return other.key == key && other.product == product;
   }
 
   @override
   int get hashCode {
-    return product.hashCode ^ expanded.hashCode ^ key.hashCode;
+    return key.hashCode ^ product.hashCode;
   }
 }
 
@@ -165,19 +159,17 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> navigateToProductItemView({
-    required _i7.Product product,
-    required bool expanded,
+  Future<dynamic> navigateToProductView({
     _i6.Key? key,
+    required _i7.Product product,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   }) async {
-    return navigateTo<dynamic>(Routes.productItemView,
-        arguments: ProductItemViewArguments(
-            product: product, expanded: expanded, key: key),
+    return navigateTo<dynamic>(Routes.productView,
+        arguments: ProductViewArguments(key: key, product: product),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -226,19 +218,17 @@ extension NavigatorStateExtension on _i8.NavigationService {
         transition: transition);
   }
 
-  Future<dynamic> replaceWithProductItemView({
-    required _i7.Product product,
-    required bool expanded,
+  Future<dynamic> replaceWithProductView({
     _i6.Key? key,
+    required _i7.Product product,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
     Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
         transition,
   }) async {
-    return replaceWith<dynamic>(Routes.productItemView,
-        arguments: ProductItemViewArguments(
-            product: product, expanded: expanded, key: key),
+    return replaceWith<dynamic>(Routes.productView,
+        arguments: ProductViewArguments(key: key, product: product),
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
