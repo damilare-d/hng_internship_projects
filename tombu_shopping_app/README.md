@@ -27,16 +27,21 @@ Create a Timbu account on timbu.cloud.
 Get your API key and APP ID.
 Update the api_service.dart file with your API key, APP ID, and organization ID. 
 
-6. Screenshots 
+6. Screenshots
 
-7. Appetize.io Demo
-Check out the app on Appetize.io: Appetize.io Link 
+7. video
 
-8. APK Download
-Download the APK from this link: APK Download Link
+https://github.com/damilare-d/hng_internship_projects/assets/83401880/9a3067ca-69b3-4143-9ede-1f7b7203c44e
 
-9. Contributing
+
+8. Appetize.io Demo, the appetize link not responding, pls check the video or build the apk
+Check out the app on Appetize.io:[ Appetize.io Link ](https://appetize.io/app/android/com.example.tombu_shopping_app?device=pixel7&osVersion=13.0)
+
+9. APK Download
+Download the APK from this link: [APK Download Link](https://drive.google.com/file/d/1T7bY03U6bS1ofxJckMmY_g68vnfrajDE/view?usp=sharing)
+
+10. Contributing
 If you have any suggestions or improvements, feel free to create an issue or submit a pull request.
 
-10. License
+11. License
 This project is licensed under the MIT License.
