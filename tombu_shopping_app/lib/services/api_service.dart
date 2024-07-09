@@ -6,10 +6,10 @@ import 'package:tombu_shopping_app/ui/common/constants.dart';
 class ApiService {
   final String baseUrl = "https://api.timbu.cloud/products";
 
-  Future<List<Product>> fetchProducts() async {
+  Future<List<Product>> fetchProducts(int page, int size) async {
     final response = await http.get(
       Uri.parse(
-        "$baseUrl?organization_id=$kOrganizationId&Appid=$kAppId&Apikey=$kApiKey",
+        "$baseUrl?organization_id=$kOrganizationId&Appid=$kAppId&Apikey=$kApiKey&page=$page&size=$size",
       ),
     );
 
@@ -21,10 +21,7 @@ class ApiService {
       List<dynamic> items = data['items'];
       return items.map((item) => Product.fromJson(item)).toList();
     } else {
-      throw Exception('Failed to load products');
+      throw Exception('Failed to load products: Server Error: Something went wrong on the API server.');
     }
   }
 }
-
-///organization_id=4f0a4e3def204d408ed7086ac594092e&reverse_sort=false&page=1&size=10&Appid=OH35TILK1CDNBBX&Apikey=fdab2dbd5c3142078d6833392bfa666920240707160136587933",
-//
