@@ -10,18 +10,18 @@ class ProductListViewModel extends BaseViewModel {
   List<Product> get products => _products;
   List<bool> _expanded = [];
   int _currentPage = 1;
-  final int _itemsPerPage = 10;
 
   int get currentPage => _currentPage;
+  int get itemsPerPage => 10;
 
   List<bool> get expanded => _expanded;
 
-  Future<void> fetchProducts({int page = 1}) async {
+  Future<void> fetchProducts() async {
     setBusy(true);
     try {
-      _products = await _apiService.fetchProducts(page, _itemsPerPage);
+      _products = await _apiService.fetchProducts(_currentPage, itemsPerPage);
       _expanded = List<bool>.filled(_products.length, false);
-      _currentPage = page;
+      clearErrors();
       notifyListeners();
     } catch (e) {
       setError(e.toString());
@@ -37,11 +37,17 @@ class ProductListViewModel extends BaseViewModel {
 
   void previousPage() {
     if (_currentPage > 1) {
-      fetchProducts(page: _currentPage - 1);
+      _currentPage--;
+      //fetchProducts();
     }
   }
 
   void nextPage() {
-    fetchProducts(page: _currentPage + 1);
+    _currentPage++;
+   // fetchProducts();
+  }
+
+  void retryFetchProducts() {
+    fetchProducts();
   }
 }
