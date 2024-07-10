@@ -35,10 +35,10 @@ https://github.com/damilare-d/hng_internship_projects/assets/83401880/9a3067ca-6
 
 
 8. Appetize.io Demo, the appetize link not responding, pls check the video or build the apk
-Check out the app on Appetize.io:[ Appetize.io Link ](https://appetize.io/app/android/com.example.tombu_shopping_app?device=pixel7&osVersion=13.0)
+Check out the app on Appetize.io: [appetize.io link](https://appetize.io/app/android/com.example.tombu_shopping_app?device=pixel7&osVersion=13.0)
 
 9. APK Download
-Download the APK from this link: [APK Download Link](https://drive.google.com/file/d/1T7bY03U6bS1ofxJckMmY_g68vnfrajDE/view?usp=sharing)
+Download the APK from this link: [APK Download Link](https://drive.google.com/file/d/1TIWMqrGLsa6t2fQT1z5bIk6nJgt0K8nQ/view?usp=sharing)
 
 10. Contributing
 If you have any suggestions or improvements, feel free to create an issue or submit a pull request.
