@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:tombu_shopping_app/models/product_model.dart';
-import 'package:tombu_shopping_app/ui/common/constants.dart';
 
 class ApiService {
   final String baseUrl = "https://api.timbu.cloud/products";
@@ -9,7 +9,8 @@ class ApiService {
   Future<List<Product>> fetchProducts(int page, int size) async {
     final response = await http.get(
       Uri.parse(
-        "$baseUrl?organization_id=$kOrganizationId&Appid=$kAppId&Apikey=$kApiKey&page=$page&size=$size",
+          "$baseUrl?organization_id=${dotenv.env['ORGANIZATION_ID']}&Appid=${dotenv.env['APP_ID']}&Apikey=${dotenv.env['API_KEY']}&page=$page&size=$size",
+
       ),
     );
 
