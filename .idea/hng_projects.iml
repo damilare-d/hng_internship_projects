@@ -12,6 +12,9 @@
       <excludeFolder url="file://$MODULE_DIR$/tombu_shopping_app/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/tombu_shopping_app/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/tombu_shopping_app/build" />
+      <excludeFolder url="file://$MODULE_DIR$/stage_3_hng_app/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/stage_3_hng_app/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/stage_3_hng_app/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
