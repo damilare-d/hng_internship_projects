@@ -10,6 +10,8 @@ import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
 import 'package:stacked_services/stacked_services.dart' as _i2;
+import 'package:stage_3_hng_app/models/product_model.dart' as _i8;
+import 'package:stage_3_hng_app/services/cart_service_service.dart' as _i9;
 import 'package:stage_3_hng_app/services/product_detail_service.dart' as _i7;
 
 // ignore_for_file: type=lint
@@ -676,4 +678,173 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockProductDetailService extends _i1.Mock
-    implements _i7.ProductDetailService {}
+    implements _i7.ProductDetailService {
+  @override
+  String get selectedColor => (super.noSuchMethod(
+        Invocation.getter(#selectedColor),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedColor),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedColor),
+        ),
+      ) as String);
+
+  @override
+  int get quantity => (super.noSuchMethod(
+        Invocation.getter(#quantity),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  String get description => (super.noSuchMethod(
+        Invocation.getter(#description),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#description),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#description),
+        ),
+      ) as String);
+
+  @override
+  String get productTitle => (super.noSuchMethod(
+        Invocation.getter(#productTitle),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#productTitle),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#productTitle),
+        ),
+      ) as String);
+
+  @override
+  String get price => (super.noSuchMethod(
+        Invocation.getter(#price),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#price),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#price),
+        ),
+      ) as String);
+
+  @override
+  List<_i8.Product> get products => (super.noSuchMethod(
+        Invocation.getter(#products),
+        returnValue: <_i8.Product>[],
+        returnValueForMissingStub: <_i8.Product>[],
+      ) as List<_i8.Product>);
+
+  @override
+  bool get hasListeners => (super.noSuchMethod(
+        Invocation.getter(#hasListeners),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  void setSelectedColor(String? color) => super.noSuchMethod(
+        Invocation.method(
+          #setSelectedColor,
+          [color],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setQuantity(int? qty) => super.noSuchMethod(
+        Invocation.method(
+          #setQuantity,
+          [qty],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setDescription(String? desc) => super.noSuchMethod(
+        Invocation.method(
+          #setDescription,
+          [desc],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setProductTitle(String? title) => super.noSuchMethod(
+        Invocation.method(
+          #setProductTitle,
+          [title],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setPrice(String? price) => super.noSuchMethod(
+        Invocation.method(
+          #setPrice,
+          [price],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void setProducts(List<_i8.Product>? products) => super.noSuchMethod(
+        Invocation.method(
+          #setProducts,
+          [products],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [CartServiceService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCartServiceService extends _i1.Mock
+    implements _i9.CartServiceService {}

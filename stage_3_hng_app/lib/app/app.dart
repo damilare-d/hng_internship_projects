@@ -1,3 +1,4 @@
+import 'package:stage_3_hng_app/services/api_service.dart';
 import 'package:stage_3_hng_app/ui/bottom_sheets/notice/notice_sheet.dart';
 import 'package:stage_3_hng_app/ui/dialogs/info_alert/info_alert_dialog.dart';
 import 'package:stage_3_hng_app/ui/views/home/home_view.dart';
@@ -8,6 +9,7 @@ import 'package:stage_3_hng_app/ui/views/dashboard/dashboard_view.dart';
 import 'package:stage_3_hng_app/ui/views/single_product/single_product_view.dart';
 import 'package:stage_3_hng_app/ui/views/cart/cart_view.dart';
 import 'package:stage_3_hng_app/services/product_detail_service.dart';
+import 'package:stage_3_hng_app/services/cart_service_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -24,6 +26,8 @@ import 'package:stage_3_hng_app/services/product_detail_service.dart';
     LazySingleton(classType: DialogService),
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: ProductDetailService),
+    LazySingleton(classType: ApiService),
+    LazySingleton(classType: CartServiceService),
 // @stacked-service
   ],
   bottomsheets: [

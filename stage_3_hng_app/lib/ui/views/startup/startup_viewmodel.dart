@@ -23,7 +23,8 @@ class StartupViewModel extends BaseViewModel {
     setBusy(true);
     try {
       List<Product> products = await _apiService.fetchProducts();
-      _productDetailService.setProducts(products); // Store products in the service
+      _productDetailService
+          .setProducts(products); // Store products in the service
       clearErrors();
     } catch (e) {
       setError(e.toString());

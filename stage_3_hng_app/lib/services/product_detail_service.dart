@@ -7,6 +7,7 @@ class ProductDetailService with ChangeNotifier {
   String _description = '';
   String _productTitle = '';
   String _price = '';
+  String _selectedSize = '';
   List<Product> _products = [];
 
   String get selectedColor => _selectedColor;
@@ -14,6 +15,7 @@ class ProductDetailService with ChangeNotifier {
   String get description => _description;
   String get productTitle => _productTitle;
   String get price => _price;
+  String get selectedSize => _selectedSize;
   List<Product> get products => _products;
 
   void setSelectedColor(String color) {
@@ -38,6 +40,10 @@ class ProductDetailService with ChangeNotifier {
 
   void setPrice(String price) {
     _price = price;
+    notifyListeners();
+  }
+  void setSelectedSize(String size) {
+    _selectedSize = size;
     notifyListeners();
   }
 

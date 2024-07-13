@@ -14,7 +14,9 @@ class ProductItem extends StatelessWidget {
     required this.imageUrl,
     required this.price,
     required this.name,
-    required this.onAddToCart, required this.onTap, required this.product,
+    required this.onAddToCart,
+    required this.onTap,
+    required this.product,
   }) : super(key: key);
 
   @override
@@ -31,17 +33,16 @@ class ProductItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: onTap,
-              child:  product.photos.isNotEmpty
+              child: product.photos.isNotEmpty
                   ? Image.network(
-                "https://api.timbu.cloud/images/${product.photos[0].url}",
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                      'assets/images/empty_img_placeholders.jpg');
-                },
-              )
+                      "https://api.timbu.cloud/images/${product.photos[0].url}",
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                            'assets/images/empty_img_placeholders.jpg');
+                      },
+                    )
                   : Image.asset('assets/images/empty_img_placeholders.jpg'),
-        ),
-
+            ),
             const SizedBox(height: 8),
             Text(
               name,
