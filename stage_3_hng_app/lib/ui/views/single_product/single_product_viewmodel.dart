@@ -4,17 +4,25 @@ import 'package:stage_3_hng_app/app/app.locator.dart';
 import 'package:stage_3_hng_app/app/app.router.dart';
 import 'package:stage_3_hng_app/services/product_detail_service.dart';
 
-
+import '../../../models/product_model.dart';
 
 class SingleProductViewModel extends BaseViewModel {
-   ProductDetailService _productDetailService = locator<ProductDetailService>();
+  ProductDetailService _productDetailService = locator<ProductDetailService>();
 
   //SingleProductViewModel(this._productDetailService);
 
-    List<String> imageUrls = [];
+  List<String> imageUrls = [
+    'assets/images/empty_img_placeholders.jpg',
+    'assets/images/empty_img_placeholders.jpg',
+    'assets/images/empty_img_placeholders.jpg',
+    'assets/images/empty_img_placeholders.jpg',
+    'assets/images/empty_img_placeholders.jpg'
+  ];
+
+  List<Product> _products = [];
+  List<Product> get products => _products;
 
   final NavigationService _navigationService = locator<NavigationService>();
-
 
   String get selectedColor => _productDetailService.selectedColor;
   int get quantity => _productDetailService.quantity;
@@ -47,7 +55,7 @@ class SingleProductViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-   void navigateToSingleProductView() {
-     _navigationService.navigateTo(Routes.singleProductView);
-   }
+  void navigateToSingleProductView() {
+    _navigationService.navigateTo(Routes.singleProductView);
+  }
 }

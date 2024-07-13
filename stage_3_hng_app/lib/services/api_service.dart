@@ -6,10 +6,10 @@ import 'package:stage_3_hng_app/models/product_model.dart';
 class ApiService {
   final String baseUrl = "https://api.timbu.cloud/products";
 
-  Future<List<Product>> fetchProducts(int page, int size) async {
+  Future<List<Product>> fetchProducts() async {
     final response = await http.get(
       Uri.parse(
-        "$baseUrl?organization_id=${dotenv.env['ORGANIZATION_ID']}&Appid=${dotenv.env['APP_ID']}&Apikey=${dotenv.env['API_KEY']}&page=$page&size=$size",
+        "$baseUrl?organization_id=${dotenv.env['ORGANIZATION_ID']}&Appid=${dotenv.env['APP_ID']}&Apikey=${dotenv.env['API_KEY']}",
       ),
     );
 

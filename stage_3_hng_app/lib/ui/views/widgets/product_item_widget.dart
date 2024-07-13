@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stage_3_hng_app/models/product_model.dart';
 
 class ProductItem extends StatelessWidget {
+  final Product product;
   final String imageUrl;
   final String price;
   final String name;
@@ -12,14 +14,14 @@ class ProductItem extends StatelessWidget {
     required this.imageUrl,
     required this.price,
     required this.name,
-    required this.onAddToCart, required this.onTap,
+    required this.onAddToCart, required this.onTap, required this.product,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: 300,
-      // width: 168,
+      height: 500,
+      width: 168,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -29,12 +31,17 @@ class ProductItem extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: onTap,
-              child: Image.asset(
-                imageUrl,
-                fit: BoxFit.contain,
-                height: 150,
-              ),
-            ),
+              child:  product.photos.isNotEmpty
+                  ? Image.network(
+                "https://api.timbu.cloud/images/${product.photos[0].url}",
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                      'assets/images/empty_img_placeholders.jpg');
+                },
+              )
+                  : Image.asset('assets/images/empty_img_placeholders.jpg'),
+        ),
+
             const SizedBox(height: 8),
             Text(
               name,

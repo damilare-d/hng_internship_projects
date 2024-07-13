@@ -5,7 +5,6 @@ import 'package:stage_3_hng_app/ui/views/single_product/single_product_viewmodel
 import 'package:stage_3_hng_app/ui/views/widgets/product_item_widget.dart';
 
 class SingleProductView extends StatelessWidget {
-
   const SingleProductView({super.key});
 
   @override
@@ -29,7 +28,7 @@ class SingleProductView extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Roboto Flex',
                     fontSize: 12,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                     height: 14.06 / 12,
                   ),
                 ),
@@ -59,7 +58,7 @@ class SingleProductView extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'Roboto Flex',
                     fontSize: 15,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.w500,
                     height: 17.58 / 15,
                   ),
                 ),
@@ -108,7 +107,12 @@ class SingleProductView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Size', style: TextStyle(fontFamily: 'Roboto Flex', fontSize: 15, fontWeight: FontWeight.w400)),
+        const Text('Size',
+            style: TextStyle(
+                fontFamily: 'Roboto Flex',
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                height: 17.58 / 15)),
         Wrap(
           spacing: 8.0,
           children: List.generate(6, (index) {
@@ -129,7 +133,12 @@ class SingleProductView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('Color', style: TextStyle(fontFamily: 'Roboto Flex', fontSize: 15, fontWeight: FontWeight.w400)),
+        const Text('Color',
+            style: TextStyle(
+                fontFamily: 'Roboto Flex',
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                height: 17.58 / 15)),
         Wrap(
           spacing: 8.0,
           children: List.generate(6, (index) {
@@ -143,10 +152,14 @@ class SingleProductView extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.primaries[index],
                   border: Border.all(
-                    color: viewModel.selectedColor == 'Color $index' ? Colors.black : Colors.transparent,
+                    color: viewModel.selectedColor == 'Color $index'
+                        ? Colors.black
+                        : Colors.transparent,
                   ),
                 ),
-                child: viewModel.selectedColor == 'Color $index' ? const Icon(Icons.check, color: Colors.white) : null,
+                child: viewModel.selectedColor == 'Color $index'
+                    ? const Icon(Icons.check, color: Colors.white)
+                    : null,
               ),
             );
           }),
@@ -156,20 +169,38 @@ class SingleProductView extends StatelessWidget {
   }
 
   Widget _buildQuantitySelector(SingleProductViewModel viewModel) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        IconButton(
-          icon: const Icon(Icons.remove),
-          onPressed: () {
-            viewModel.setQuantity(viewModel.quantity > 1 ? viewModel.quantity - 1 : 1);
-          },
+        const Text(
+          "Quantity",
+          style: TextStyle(
+              fontFamily: 'Roboto Flex',
+              fontSize: 15,
+              fontWeight: FontWeight.w500,
+              height: 17.58 / 15),
         ),
-        Text(viewModel.quantity.toString(), style: const TextStyle(fontFamily: 'Roboto Flex', fontSize: 15, fontWeight: FontWeight.w400)),
-        IconButton(
-          icon: const Icon(Icons.add),
-          onPressed: () {
-            viewModel.setQuantity(viewModel.quantity + 1);
-          },
+        Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.remove),
+              onPressed: () {
+                viewModel.setQuantity(
+                    viewModel.quantity > 1 ? viewModel.quantity - 1 : 1);
+              },
+            ),
+            Text(viewModel.quantity.toString(),
+                style: const TextStyle(
+                    fontFamily: 'Roboto Flex',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400)),
+            IconButton(
+              icon: const Icon(Icons.add),
+              onPressed: () {
+                viewModel.setQuantity(viewModel.quantity + 1);
+              },
+            ),
+          ],
         ),
       ],
     );
@@ -179,9 +210,14 @@ class SingleProductView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('More from Ego', style: TextStyle(fontFamily: 'Roboto Flex', fontSize: 15, fontWeight: FontWeight.w400)),
+        const Text('More from Ego',
+            style: TextStyle(
+                fontFamily: 'Roboto Flex',
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                height: 28.13 / 24)),
         SizedBox(
-          height: 200,
+          height: 350,
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
@@ -194,6 +230,7 @@ class SingleProductView extends StatelessWidget {
                 imageUrl: 'assets/images/empty_img_placeholders.jpg',
                 price: '\$50',
                 name: 'Product $index',
+                product: viewModel.products[index],
                 onAddToCart: () {
                   // Add to cart action
                 },
@@ -213,8 +250,16 @@ class SingleProductView extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Total Price', style: TextStyle(fontFamily: 'Roboto Flex', fontSize: 19, fontWeight: FontWeight.w500)),
-            Text(viewModel.price, style: const TextStyle(fontFamily: 'Roboto Flex', fontSize: 12, fontWeight: FontWeight.w400)),
+            const Text('Total Price',
+                style: TextStyle(
+                    fontFamily: 'Roboto Flex',
+                    fontSize: 19,
+                    fontWeight: FontWeight.w500)),
+            Text(viewModel.price,
+                style: const TextStyle(
+                    fontFamily: 'Roboto Flex',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400)),
           ],
         ),
         ElevatedButton.icon(
@@ -224,7 +269,8 @@ class SingleProductView extends StatelessWidget {
           icon: const Icon(Icons.shopping_cart),
           label: const Text('Add to Cart'),
           style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white, backgroundColor: const Color(0xFF0072C6), // White text color
+            foregroundColor: Colors.white,
+            backgroundColor: const Color(0xFF0072C6), // White text color
           ),
         ),
       ],

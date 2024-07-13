@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:stage_3_hng_app/models/product_model.dart';
 
 class ProductDetailService with ChangeNotifier {
   String _selectedColor = '';
@@ -6,12 +7,14 @@ class ProductDetailService with ChangeNotifier {
   String _description = '';
   String _productTitle = '';
   String _price = '';
+  List<Product> _products = [];
 
   String get selectedColor => _selectedColor;
   int get quantity => _quantity;
   String get description => _description;
   String get productTitle => _productTitle;
   String get price => _price;
+  List<Product> get products => _products;
 
   void setSelectedColor(String color) {
     _selectedColor = color;
@@ -35,6 +38,11 @@ class ProductDetailService with ChangeNotifier {
 
   void setPrice(String price) {
     _price = price;
+    notifyListeners();
+  }
+
+  void setProducts(List<Product> products) {
+    _products = products;
     notifyListeners();
   }
 }

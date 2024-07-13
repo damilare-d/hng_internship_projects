@@ -2,17 +2,34 @@ import 'package:stacked/stacked.dart';
 import 'package:stage_3_hng_app/app/app.locator.dart';
 import 'package:stage_3_hng_app/app/app.router.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stage_3_hng_app/models/product_model.dart';
+import 'package:stage_3_hng_app/services/api_service.dart';
+import 'package:stage_3_hng_app/services/product_detail_service.dart';
 
 class StartupViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
+  final _apiService = locator<ApiService>();
+  final _productDetailService = locator<ProductDetailService>();
 
-  // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
     await Future.delayed(const Duration(seconds: 3));
 
-    // This is where you can make decisions on where your app should navigate when
-    // you have custom startup logic
+    await fetchProducts();
 
     _navigationService.replaceWithDashboardView();
+  }
+
+  Future<void> fetchProducts() async {
+    setBusy(true);
+    try {
+      List<Product> products = await _apiService.fetchProducts();
+      _productDetailService.setProducts(products); // Store products in the service
+      clearErrors();
+    } catch (e) {
+      setError(e.toString());
+    } finally {
+      setBusy(false);
+      notifyListeners();
+    }
   }
 }

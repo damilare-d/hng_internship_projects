@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stage_3_hng_app/app/app.router.dart';
 import 'package:stage_3_hng_app/ui/views/widgets/brand_widget.dart';
 import 'package:stage_3_hng_app/ui/views/widgets/product_item_widget.dart';
 import 'home_viewmodel.dart';
@@ -182,6 +181,7 @@ Widget _buildSpecialOffersSection(HomeViewModel viewModel) {
               imageUrl: 'assets/images/empty_img_placeholders.jpg',
               price: '\$50',
               name: 'Product $index',
+              product: viewModel.products[index],
               onAddToCart: () {
                 // Add to cart action
               },
@@ -223,6 +223,7 @@ Widget _buildFeaturedSneakersSection(HomeViewModel viewModel) {
               imageUrl: 'assets/images/empty_img_placeholders.jpg',
               price: '\$50',
               name: 'Product $index',
+              product: viewModel.products[index],
               onAddToCart: () {
                 // Add to cart action
               },
