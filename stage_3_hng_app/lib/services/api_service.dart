@@ -13,12 +13,17 @@ class ApiService {
       ),
     );
 
+    // Added for debugging
+    print(
+        'Request URL: $baseUrl?organization_id=${dotenv.env['ORGANIZATION_ID']}&Appid=${dotenv.env['APP_ID']}&Apikey=${dotenv.env['API_KEY']}');
+
     print('Response status: ${response.statusCode}'); // Log the status code
     print('Response body: ${response.body}'); // Log the response body
 
     if (response.statusCode == 200) {
       Map<String, dynamic> data = json.decode(response.body);
       List<dynamic> items = data['items'];
+      print('Parsed items: $items'); // Log the parsed items
       return items.map((item) => Product.fromJson(item)).toList();
     } else {
       throw Exception(

@@ -7,7 +7,7 @@ import 'package:stage_3_hng_app/services/product_detail_service.dart';
 import '../../../models/product_model.dart';
 
 class SingleProductViewModel extends BaseViewModel {
-  ProductDetailService _productDetailService = locator<ProductDetailService>();
+  final ProductDetailService _productDetailService = locator<ProductDetailService>();
 
   //SingleProductViewModel(this._productDetailService);
 
@@ -19,8 +19,19 @@ class SingleProductViewModel extends BaseViewModel {
     'assets/images/empty_img_placeholders.jpg'
   ];
 
-  List<Product> _products = [];
-  List<Product> get products => _products;
+  // final product = products[index];
+  //
+  // List<String> networkImageUrls =[ "https://api.timbu.cloud/images/${product.photos.url}"];
+
+
+
+
+
+
+  List<Product> get products => _productDetailService.products;
+
+  // List<Product> _products = [];
+  // List<Product> get products => _products;
 
   final NavigationService _navigationService = locator<NavigationService>();
 

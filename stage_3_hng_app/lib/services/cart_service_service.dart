@@ -42,11 +42,12 @@ class CartServiceService with ChangeNotifier {
   }
 
   int getTotalItems() {
-    return _cartItems.fold<int>(0, (total, item) => total + item['quantity'] as int);
+    return _cartItems.fold<int>(
+        0, (total, item) => total + item['quantity'] as int);
   }
 
-
   double getTotalPrice() {
-    return _cartItems.fold(0.0, (total, item) => total + item['product'].price * item['quantity']);
+    return _cartItems.fold(
+        0.0, (total, item) => total + item['product'].price * item['quantity']);
   }
 }

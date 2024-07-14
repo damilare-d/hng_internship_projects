@@ -739,6 +739,19 @@ class MockProductDetailService extends _i1.Mock
       ) as String);
 
   @override
+  String get selectedSize => (super.noSuchMethod(
+        Invocation.getter(#selectedSize),
+        returnValue: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedSize),
+        ),
+        returnValueForMissingStub: _i3.dummyValue<String>(
+          this,
+          Invocation.getter(#selectedSize),
+        ),
+      ) as String);
+
+  @override
   List<_i8.Product> get products => (super.noSuchMethod(
         Invocation.getter(#products),
         returnValue: <_i8.Product>[],
@@ -798,6 +811,15 @@ class MockProductDetailService extends _i1.Mock
       );
 
   @override
+  void setSelectedSize(String? size) => super.noSuchMethod(
+        Invocation.method(
+          #setSelectedSize,
+          [size],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void setProducts(List<_i8.Product>? products) => super.noSuchMethod(
         Invocation.method(
           #setProducts,
@@ -847,4 +869,110 @@ class MockProductDetailService extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCartServiceService extends _i1.Mock
-    implements _i9.CartServiceService {}
+    implements _i9.CartServiceService {
+  @override
+  List<Map<String, dynamic>> get cartItems => (super.noSuchMethod(
+        Invocation.getter(#cartItems),
+        returnValue: <Map<String, dynamic>>[],
+        returnValueForMissingStub: <Map<String, dynamic>>[],
+      ) as List<Map<String, dynamic>>);
+
+  @override
+  bool get hasListeners => (super.noSuchMethod(
+        Invocation.getter(#hasListeners),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  void addToCart(_i8.Product? product) => super.noSuchMethod(
+        Invocation.method(
+          #addToCart,
+          [product],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeFromCart(_i8.Product? product) => super.noSuchMethod(
+        Invocation.method(
+          #removeFromCart,
+          [product],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void increaseQuantity(_i8.Product? product) => super.noSuchMethod(
+        Invocation.method(
+          #increaseQuantity,
+          [product],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void decreaseQuantity(_i8.Product? product) => super.noSuchMethod(
+        Invocation.method(
+          #decreaseQuantity,
+          [product],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  int getTotalItems() => (super.noSuchMethod(
+        Invocation.method(
+          #getTotalItems,
+          [],
+        ),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  double getTotalPrice() => (super.noSuchMethod(
+        Invocation.method(
+          #getTotalPrice,
+          [],
+        ),
+        returnValue: 0.0,
+        returnValueForMissingStub: 0.0,
+      ) as double);
+
+  @override
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}

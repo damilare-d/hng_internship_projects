@@ -8,7 +8,7 @@ import 'package:stacked_services/stacked_services.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: ".env");
   await setupLocator();
   setupDialogUi();
   setupBottomSheetUi();
@@ -25,7 +25,7 @@ class MainApp extends StatelessWidget {
       onGenerateRoute: StackedRouter().onGenerateRoute,
       navigatorKey: StackedService.navigatorKey,
       theme: ThemeData(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           bodySmall: TextStyle(
             fontFamily: 'Roboto Flex',
             fontSize: 15,

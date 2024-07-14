@@ -3,17 +3,17 @@ import 'package:stage_3_hng_app/models/product_model.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
-  final String imageUrl;
-  final String price;
-  final String name;
+  final String? imageUrl;
+  final String? price;
+  final String? name;
   final VoidCallback onAddToCart;
   final VoidCallback onTap;
 
   const ProductItem({
     Key? key,
-    required this.imageUrl,
-    required this.price,
-    required this.name,
+     this.imageUrl,
+     this.price,
+     this.name,
     required this.onAddToCart,
     required this.onTap,
     required this.product,
@@ -45,11 +45,11 @@ class ProductItem extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              name,
+              product.name,
               style: Theme.of(context).textTheme.labelMedium,
             ),
             Text(
-              price,
+              product.currentPrice.toString(),
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: const Color(0xFF0072C6),
                   ),

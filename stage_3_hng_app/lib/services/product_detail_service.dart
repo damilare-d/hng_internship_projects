@@ -42,6 +42,7 @@ class ProductDetailService with ChangeNotifier {
     _price = price;
     notifyListeners();
   }
+
   void setSelectedSize(String size) {
     _selectedSize = size;
     notifyListeners();

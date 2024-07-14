@@ -21,7 +21,7 @@ class SingleProductView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildCarouselSlider(viewModel.imageUrls),
+                _buildSlider(viewModel),
                 const SizedBox(height: 16.0),
                 const Text(
                   'Brand Title',
@@ -90,6 +90,19 @@ class SingleProductView extends StatelessWidget {
     );
   }
 
+  Widget _buildSlider(SingleProductViewModel viewModel) {
+    // Extract image URLs from products
+    List<String> imageUrls = viewModel.products
+        .expand((product) => product.photos.map((photo) => 'https://api.timbu.cloud/images/${photo.url}'))
+        .toList();
+
+    // Use placeholder image if no images are available
+    if (imageUrls.isEmpty) {
+      imageUrls = ['assets/images/empty_img_placeholders.jpg'];
+    }
+
+    return _buildCarouselSlider(imageUrls);
+  }
   Widget _buildCarouselSlider(List<String> imageUrls) {
     return CarouselSlider(
       options: CarouselOptions(height: 200.0, autoPlay: true),
@@ -226,8 +239,11 @@ class SingleProductView extends StatelessWidget {
             ),
             itemCount: 4,
             itemBuilder: (context, index) {
+              final product = viewModel.products[index];
               return ProductItem(
-                imageUrl: 'assets/images/empty_img_placeholders.jpg',
+                imageUrl: product.photos.isNotEmpty
+                    ? "https://api.timbu.cloud/images/${product.photos[0].url}"
+                    : 'assets/images/empty_img_placeholders.jpg',
                 price: '\$50',
                 name: 'Product $index',
                 product: viewModel.products[index],

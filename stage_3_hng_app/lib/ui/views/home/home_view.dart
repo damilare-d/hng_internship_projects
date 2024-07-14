@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stage_3_hng_app/ui/views/widgets/brand_widget.dart';
+import 'package:stage_3_hng_app/ui/views/widgets/empty_state_widget.dart';
+import 'package:stage_3_hng_app/ui/views/widgets/error_state_widget.dart';
 import 'package:stage_3_hng_app/ui/views/widgets/product_item_widget.dart';
 import 'home_viewmodel.dart';
 
@@ -14,45 +16,47 @@ class HomeView extends StackedView<HomeViewModel> {
     Widget? child,
   ) {
     return Scaffold(
-        body: SafeArea(
-            child: Scaffold(
-      appBar: AppBar(
-        title: const Text('AG ZENARD'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search),
-            onPressed: () {},
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildUserGreeting(context),
-            const SizedBox(height: 16.0),
-            _buildSlider(),
-            const SizedBox(height: 16.0),
-            _buildBrandsSection(),
-            const SizedBox(height: 16.0),
-            _buildSpecialOffersSection(viewModel),
-            const SizedBox(height: 16.0),
-            _buildFeaturedSneakersSection(viewModel),
-            const SizedBox(height: 16.0),
-            Center(
-              child: ElevatedButton(
+      body: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('AG ZENARD'),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.search),
                 onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0072C6),
-                ),
-                child: const Text('View More'),
               ),
+            ],
+          ),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildUserGreeting(context),
+                const SizedBox(height: 16.0),
+                _buildSlider(),
+                const SizedBox(height: 16.0),
+                _buildBrandsSection(),
+                const SizedBox(height: 16.0),
+                _buildSpecialOffersSection(viewModel),
+                const SizedBox(height: 16.0),
+                _buildFeaturedSneakersSection(viewModel),
+                const SizedBox(height: 16.0),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0072C6),
+                    ),
+                    child: const Text('View More'),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
-    )));
+    );
   }
 
   @override
@@ -114,7 +118,6 @@ Widget _buildBrandsSection() {
     "Reebok": "assets/svgs/reebok.svg",
     // Add more brands as needed
   };
-
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisSize: MainAxisSize.min,
@@ -153,85 +156,111 @@ Widget _buildBrandsSection() {
 }
 
 Widget _buildSpecialOffersSection(HomeViewModel viewModel) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      const Text(
-        'Our Special Offers',
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      const SizedBox(height: 16),
-      Flexible(
-        fit: FlexFit.loose,
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
+  if (viewModel.isBusy) {
+    return const Center(child: CircularProgressIndicator());
+  } else if (viewModel.hasError) {
+    return ErrorDisplayWidget(
+      message: viewModel.error.toString(),
+      onRetry: viewModel.fetchProducts,
+    );
+  } else if (viewModel.products.isEmpty) {
+    return const EmptyStateWidget(message: 'No products available');
+  } else {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Text(
+          'Our Special Offers',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w500,
           ),
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return ProductItem(
-              imageUrl: 'assets/images/empty_img_placeholders.jpg',
-              price: '\$50',
-              name: 'Product $index',
-              product: viewModel.products[index],
-              onAddToCart: () {
-                // Add to cart action
-              },
-              onTap: viewModel.navigateToSingleProductView,
-            );
-          },
         ),
-      ),
-    ],
-  );
+        const SizedBox(height: 16),
+        Flexible(
+          fit: FlexFit.loose,
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+            ),
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return ProductItem(
+                imageUrl: 'assets/images/empty_img_placeholders.jpg',
+                price: '\$50',
+                name: 'Product $index',
+                product: viewModel.products[index],
+                onAddToCart: () {
+                  // Add to cart action
+                },
+                onTap: viewModel.navigateToSingleProductView,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 Widget _buildFeaturedSneakersSection(HomeViewModel viewModel) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      const Text(
-        'Featured Sneakers',
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      const SizedBox(height: 16),
-      Flexible(
-        fit: FlexFit.loose,
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
+  if (viewModel.isBusy) {
+    return const Center(child: CircularProgressIndicator());
+  } else if (viewModel.hasError) {
+    return ErrorDisplayWidget(
+      message: viewModel.error.toString(),
+      onRetry: viewModel.fetchProducts,
+    );
+  } else if (viewModel.products.isEmpty) {
+    return const EmptyStateWidget(message: 'No products available');
+  } else {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+
+      children: [
+        const Text(
+          'Our Special Offers',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.w500,
           ),
-          itemCount: 4,
-          itemBuilder: (context, index) {
-            return ProductItem(
-              imageUrl: 'assets/images/empty_img_placeholders.jpg',
-              price: '\$50',
-              name: 'Product $index',
-              product: viewModel.products[index],
-              onAddToCart: () {
-                // Add to cart action
-              },
-              onTap: viewModel.navigateToSingleProductView,
-            );
-          },
         ),
-      ),
-    ],
-  );
+        const SizedBox(height: 16),
+        Flexible(
+          fit: FlexFit.loose,
+          child: GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+            ),
+            itemCount: viewModel.products.length,
+            itemBuilder: (context, index) {
+              final product = viewModel.products[index];
+              return ProductItem(
+                imageUrl: product.photos.isNotEmpty
+                    ? "https://api.timbu.cloud/images/${product.photos[0].url}"
+                    : 'assets/images/empty_img_placeholders.jpg',
+                price: '\$${product.currentPrice}',
+                name: product.name,
+                product: product,
+                onAddToCart: () {
+                  // Add to cart action
+                },
+                onTap: viewModel.navigateToSingleProductView,
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
 }

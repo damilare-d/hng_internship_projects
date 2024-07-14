@@ -10,6 +10,7 @@ import 'package:stage_3_hng_app/ui/views/single_product/single_product_view.dart
 import 'package:stage_3_hng_app/ui/views/cart/cart_view.dart';
 import 'package:stage_3_hng_app/services/product_detail_service.dart';
 import 'package:stage_3_hng_app/services/cart_service_service.dart';
+import 'package:stage_3_hng_app/ui/views/checkout/checkout_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -19,6 +20,7 @@ import 'package:stage_3_hng_app/services/cart_service_service.dart';
     MaterialRoute(page: DashboardView),
     MaterialRoute(page: SingleProductView),
     MaterialRoute(page: CartView),
+    MaterialRoute(page: CheckoutView),
 // @stacked-route
   ],
   dependencies: [
