@@ -759,11 +759,20 @@ class MockProductDetailService extends _i1.Mock
       ) as List<_i8.Product>);
 
   @override
-  bool get hasListeners => (super.noSuchMethod(
-        Invocation.getter(#hasListeners),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  int get listenersCount => (super.noSuchMethod(
+        Invocation.getter(#listenersCount),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  void setCurrentProduct(_i8.Product? product) => super.noSuchMethod(
+        Invocation.method(
+          #setCurrentProduct,
+          [product],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void setSelectedColor(String? color) => super.noSuchMethod(
@@ -829,7 +838,17 @@ class MockProductDetailService extends _i1.Mock
       );
 
   @override
-  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+  void listenToReactiveValues(List<dynamic>? reactiveValues) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #listenToReactiveValues,
+          [reactiveValues],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(void Function()? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -838,19 +857,10 @@ class MockProductDetailService extends _i1.Mock
       );
 
   @override
-  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(void Function()? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void dispose() => super.noSuchMethod(
-        Invocation.method(
-          #dispose,
-          [],
         ),
         returnValueForMissingStub: null,
       );
@@ -878,11 +888,11 @@ class MockCartServiceService extends _i1.Mock
       ) as List<Map<String, dynamic>>);
 
   @override
-  bool get hasListeners => (super.noSuchMethod(
-        Invocation.getter(#hasListeners),
-        returnValue: false,
-        returnValueForMissingStub: false,
-      ) as bool);
+  int get listenersCount => (super.noSuchMethod(
+        Invocation.getter(#listenersCount),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
 
   @override
   void addToCart(_i8.Product? product) => super.noSuchMethod(
@@ -941,7 +951,17 @@ class MockCartServiceService extends _i1.Mock
       ) as double);
 
   @override
-  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+  void listenToReactiveValues(List<dynamic>? reactiveValues) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #listenToReactiveValues,
+          [reactiveValues],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(void Function()? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -950,19 +970,10 @@ class MockCartServiceService extends _i1.Mock
       );
 
   @override
-  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(void Function()? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void dispose() => super.noSuchMethod(
-        Invocation.method(
-          #dispose,
-          [],
         ),
         returnValueForMissingStub: null,
       );
