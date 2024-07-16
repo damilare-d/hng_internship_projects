@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stage_3_hng_app/app/app.locator.dart';
 import 'package:stage_3_hng_app/models/product_model.dart';
 import 'package:stage_3_hng_app/services/product_detail_service.dart';
 
-class CartServiceService with ChangeNotifier {
+class CartServiceService with ListenableServiceMixin {
   final List<Map<String, dynamic>> _cartItems = [];
 
   List<Map<String, dynamic>> get cartItems => _cartItems;
@@ -48,6 +49,8 @@ class CartServiceService with ChangeNotifier {
 
   double getTotalPrice() {
     return _cartItems.fold(
-        0.0, (total, item) => total + item['product'].price * item['quantity']);
+        0.0,
+        (total, item) =>
+            total + item['product'].currentPrice * item['quantity']);
   }
 }
