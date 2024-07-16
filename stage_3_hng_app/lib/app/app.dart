@@ -11,6 +11,8 @@ import 'package:stage_3_hng_app/ui/views/cart/cart_view.dart';
 import 'package:stage_3_hng_app/services/product_detail_service.dart';
 import 'package:stage_3_hng_app/services/cart_service_service.dart';
 import 'package:stage_3_hng_app/ui/views/checkout/checkout_view.dart';
+import 'package:stage_3_hng_app/ui/bottom_sheets/payment/payment_sheet.dart';
+import 'package:stage_3_hng_app/ui/views/success/success_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -21,6 +23,7 @@ import 'package:stage_3_hng_app/ui/views/checkout/checkout_view.dart';
     MaterialRoute(page: SingleProductView),
     MaterialRoute(page: CartView),
     MaterialRoute(page: CheckoutView),
+    MaterialRoute(page: SuccessView),
 // @stacked-route
   ],
   dependencies: [
@@ -34,7 +37,8 @@ import 'package:stage_3_hng_app/ui/views/checkout/checkout_view.dart';
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
-    // @stacked-bottom-sheet
+    StackedBottomsheet(classType: PaymentSheet),
+// @stacked-bottom-sheet
   ],
   dialogs: [
     StackedDialog(classType: InfoAlertDialog),

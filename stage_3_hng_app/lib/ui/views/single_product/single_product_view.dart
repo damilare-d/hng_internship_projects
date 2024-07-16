@@ -12,9 +12,20 @@ class SingleProductView extends StatelessWidget {
     return ViewModelBuilder<SingleProductViewModel>.reactive(
       viewModelBuilder: () => SingleProductViewModel(),
       builder: (context, viewModel, child) {
+        if (viewModel.product == null) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Product Details'),
+            ),
+            body: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+        }
+
         return Scaffold(
           appBar: AppBar(
-            title: const Text(''),
+            title: Text(viewModel.productTitle),
           ),
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(16.0),
@@ -92,8 +103,8 @@ class SingleProductView extends StatelessWidget {
 
   Widget _buildSlider(SingleProductViewModel viewModel) {
     // Extract image URLs from products
-    List<String> imageUrls = viewModel.products
-        .expand((product) => product.photos.map((photo) => 'https://api.timbu.cloud/images/${photo.url}'))
+    List<String> imageUrls = viewModel.product!.photos
+        .map((photo) => 'https://api.timbu.cloud/images/${photo.url}')
         .toList();
 
     // Use placeholder image if no images are available
@@ -103,6 +114,7 @@ class SingleProductView extends StatelessWidget {
 
     return _buildCarouselSlider(imageUrls);
   }
+
   Widget _buildCarouselSlider(List<String> imageUrls) {
     return CarouselSlider(
       options: CarouselOptions(height: 200.0, autoPlay: true),
@@ -222,6 +234,7 @@ class SingleProductView extends StatelessWidget {
   Widget _buildMoreFromEgo(SingleProductViewModel viewModel) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         const Text('More from Ego',
             style: TextStyle(
@@ -234,23 +247,17 @@ class SingleProductView extends StatelessWidget {
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8.0,
+              childAspectRatio: 0.5,
             ),
-            itemCount: 4,
+            itemCount: viewModel.products.length,
             itemBuilder: (context, index) {
               final product = viewModel.products[index];
               return ProductItem(
-                imageUrl: product.photos.isNotEmpty
-                    ? "https://api.timbu.cloud/images/${product.photos[0].url}"
-                    : 'assets/images/empty_img_placeholders.jpg',
-                price: '\$50',
-                name: 'Product $index',
-                product: viewModel.products[index],
-                onAddToCart: () {
-                  // Add to cart action
-                },
-                onTap: viewModel.navigateToSingleProductView,
+                product: product,
+                onTap: () => viewModel.navigateToSingleProductView,
+                onAddToCart: () {},
               );
             },
           ),
@@ -263,31 +270,17 @@ class SingleProductView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text('Total Price',
-                style: TextStyle(
-                    fontFamily: 'Roboto Flex',
-                    fontSize: 19,
-                    fontWeight: FontWeight.w500)),
-            Text(viewModel.price,
-                style: const TextStyle(
-                    fontFamily: 'Roboto Flex',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w400)),
-          ],
-        ),
-        ElevatedButton.icon(
+        Text(viewModel.price,
+            style: const TextStyle(
+                fontFamily: 'Roboto Flex',
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                height: 28.13 / 24)),
+        ElevatedButton(
           onPressed: () {
-            // Add to cart action
+            viewModel.navigateToCartView();
           },
-          icon: const Icon(Icons.shopping_cart),
-          label: const Text('Add to Cart'),
-          style: ElevatedButton.styleFrom(
-            foregroundColor: Colors.white,
-            backgroundColor: const Color(0xFF0072C6), // White text color
-          ),
+          child: const Text('Add to Cart'),
         ),
       ],
     );

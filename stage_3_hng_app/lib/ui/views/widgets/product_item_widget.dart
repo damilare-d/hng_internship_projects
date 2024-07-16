@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stage_3_hng_app/app/app.locator.dart';
 import 'package:stage_3_hng_app/models/product_model.dart';
+import 'package:stage_3_hng_app/services/cart_service_service.dart';
 
 class ProductItem extends StatelessWidget {
   final Product product;
@@ -8,12 +10,13 @@ class ProductItem extends StatelessWidget {
   final String? name;
   final VoidCallback onAddToCart;
   final VoidCallback onTap;
+  final cartService = locator<CartServiceService>();
 
-  const ProductItem({
+  ProductItem({
     Key? key,
-     this.imageUrl,
-     this.price,
-     this.name,
+    this.imageUrl,
+    this.price,
+    this.name,
     required this.onAddToCart,
     required this.onTap,
     required this.product,
@@ -27,39 +30,42 @@ class ProductItem extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-              onTap: onTap,
-              child: product.photos.isNotEmpty
-                  ? Image.network(
-                      "https://api.timbu.cloud/images/${product.photos[0].url}",
-                      errorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
-                            'assets/images/empty_img_placeholders.jpg');
-                      },
-                    )
-                  : Image.asset('assets/images/empty_img_placeholders.jpg'),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GestureDetector(
+            onTap: onTap,
+            child: Image(
+              image: (product.photos.isNotEmpty
+                      ? NetworkImage(
+                          "https://api.timbu.cloud/images/${product.photos[0].url}")
+                      : Image.asset('assets/images/empty_img_placeholders.jpg'))
+                  as ImageProvider,
+              height: 180,
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset('assets/images/empty_img_placeholders.jpg');
+              },
             ),
-            const SizedBox(height: 8),
-            Text(
-              product.name,
-              style: Theme.of(context).textTheme.labelMedium,
-            ),
-            Text(
-              product.currentPrice.toString(),
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: const Color(0xFF0072C6),
-                  ),
-            ),
-            ElevatedButton(
-              onPressed: onAddToCart,
-              child: const Text('Add to Cart'),
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            product.name,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+          Text(
+            product.currentPrice.toString(),
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                  color: const Color(0xFF0072C6),
+                ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              cartService.addToCart(product);
+              onAddToCart;
+            },
+            child: const Text('Add to Cart'),
+          ),
+        ],
       ),
     );
   }

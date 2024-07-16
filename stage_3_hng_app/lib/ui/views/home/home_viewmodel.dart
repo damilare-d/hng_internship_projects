@@ -22,8 +22,6 @@ class HomeViewModel extends BaseViewModel {
   String get counterLabel => 'Counter is: $_counter';
 
   int _counter = 0;
-  // final List<Product> _products = locator<ProductDetailService>().products;
-  // List<Product> get products => _products;
 
   void incrementCounter() {
     _counter++;
@@ -48,7 +46,8 @@ class HomeViewModel extends BaseViewModel {
 
   void iconSearch() {}
 
-  void navigateToSingleProductView() {
+  void navigateToSingleProductView(Product product) {
+    _productDetailService.setCurrentProduct(product);
     _navigationService.navigateTo(Routes.singleProductView);
   }
 

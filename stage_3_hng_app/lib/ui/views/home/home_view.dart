@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stage_3_hng_app/ui/views/widgets/brand_widget.dart';
@@ -34,7 +35,7 @@ class HomeView extends StackedView<HomeViewModel> {
               children: [
                 _buildUserGreeting(context),
                 const SizedBox(height: 16.0),
-                _buildSlider(),
+                _buildSlider(viewModel),
                 const SizedBox(height: 16.0),
                 _buildBrandsSection(),
                 const SizedBox(height: 16.0),
@@ -99,12 +100,31 @@ Widget _buildUserGreeting(BuildContext context) {
   );
 }
 
-Widget _buildSlider() {
-  // Replace with your slider implementation
-  return Container(
-    height: 200,
-    color: Colors.grey[300],
-    child: const Center(child: Text('Slider Placeholder')),
+Widget _buildSlider(HomeViewModel viewModel) {
+  // Extract image URLs from products
+  List<String> imageUrls = viewModel.products
+      .expand((product) => product.photos
+          .map((photo) => 'https://api.timbu.cloud/images/${photo.url}'))
+      .toList();
+
+  // Use placeholder image if no images are available
+  if (imageUrls.isEmpty) {
+    imageUrls = ['assets/images/empty_img_placeholders.jpg'];
+  }
+
+  return _buildCarouselSlider(imageUrls);
+}
+
+Widget _buildCarouselSlider(List<String> imageUrls) {
+  return CarouselSlider(
+    options: CarouselOptions(height: 200.0, autoPlay: true),
+    items: imageUrls.map((url) {
+      return Builder(
+        builder: (BuildContext context) {
+          return Image.network(url, fit: BoxFit.cover);
+        },
+      );
+    }).toList(),
   );
 }
 
@@ -187,6 +207,7 @@ Widget _buildSpecialOffersSection(HomeViewModel viewModel) {
               crossAxisCount: 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
+              childAspectRatio: 0.5,
             ),
             itemCount: 4,
             itemBuilder: (context, index) {
@@ -198,7 +219,8 @@ Widget _buildSpecialOffersSection(HomeViewModel viewModel) {
                 onAddToCart: () {
                   // Add to cart action
                 },
-                onTap: viewModel.navigateToSingleProductView,
+                onTap: () => viewModel
+                    .navigateToSingleProductView(viewModel.products[index]),
               );
             },
           ),
@@ -222,7 +244,6 @@ Widget _buildFeaturedSneakersSection(HomeViewModel viewModel) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
-
       children: [
         const Text(
           'Our Special Offers',
@@ -241,6 +262,7 @@ Widget _buildFeaturedSneakersSection(HomeViewModel viewModel) {
               crossAxisCount: 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
+              childAspectRatio: 0.5,
             ),
             itemCount: viewModel.products.length,
             itemBuilder: (context, index) {
@@ -255,7 +277,8 @@ Widget _buildFeaturedSneakersSection(HomeViewModel viewModel) {
                 onAddToCart: () {
                   // Add to cart action
                 },
-                onTap: viewModel.navigateToSingleProductView,
+                onTap: () => viewModel
+                    .navigateToSingleProductView(viewModel.products[index]),
               );
             },
           ),

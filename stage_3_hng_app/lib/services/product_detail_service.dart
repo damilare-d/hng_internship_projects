@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stage_3_hng_app/models/product_model.dart';
 
-class ProductDetailService with ChangeNotifier {
+class ProductDetailService with ListenableServiceMixin {
   String _selectedColor = '';
   int _quantity = 1;
   String _description = '';
@@ -9,6 +10,7 @@ class ProductDetailService with ChangeNotifier {
   String _price = '';
   String _selectedSize = '';
   List<Product> _products = [];
+  Product? _currentProduct;
 
   String get selectedColor => _selectedColor;
   int get quantity => _quantity;
@@ -17,6 +19,12 @@ class ProductDetailService with ChangeNotifier {
   String get price => _price;
   String get selectedSize => _selectedSize;
   List<Product> get products => _products;
+  Product? get currentProduct => _currentProduct;
+
+  void setCurrentProduct(Product product) {
+    _currentProduct = product;
+    notifyListeners();
+  }
 
   void setSelectedColor(String color) {
     _selectedColor = color;
