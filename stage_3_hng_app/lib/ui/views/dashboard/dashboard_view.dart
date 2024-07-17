@@ -15,25 +15,15 @@ class DashboardView extends StackedView<DashboardViewModel> {
   ) {
     return Scaffold(
       body: IndexedStack(
-        index: viewModel.currentIndex,
-        children: [
-          HomeView(),
-          // Add other views here, e.g., AllProductsView(), CartView(), etc.
-          Container(
-              color: Colors.blue, child: Center(child: Text('All Products'))),
-          Container(color: Colors.green, child: Center(child: Text('Cart'))),
-          Container(
-              color: Colors.yellow, child: Center(child: Text('My Orders'))),
-          Container(
-              color: Colors.purple, child: Center(child: Text('Profile'))),
-        ],
+        index: viewModel.selectedIndex,
+        children: viewModel.dashboardOptions,
       ),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
         selectedItemColor: const Color(0xff0072C6),
         unselectedItemColor: Colors.grey,
-        currentIndex: viewModel.currentIndex,
-        onTap: (index) => viewModel.setIndex(index),
+        currentIndex: viewModel.selectedIndex,
+        onTap: viewModel.onItemTapped,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
