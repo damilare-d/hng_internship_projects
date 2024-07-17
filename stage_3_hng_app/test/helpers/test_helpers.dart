@@ -4,6 +4,8 @@ import 'package:stage_3_hng_app/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stage_3_hng_app/services/product_detail_service.dart';
 import 'package:stage_3_hng_app/services/cart_service_service.dart';
+import 'package:stage_3_hng_app/services/checkout_service.dart';
+import 'package:stage_3_hng_app/services/app_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -14,6 +16,8 @@ import 'test_helpers.mocks.dart';
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<ProductDetailService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<CartServiceService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<CheckoutService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<AppService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -22,6 +26,8 @@ void registerServices() {
   getAndRegisterDialogService();
   getAndRegisterProductDetailService();
   getAndRegisterCartServiceService();
+  getAndRegisterCheckoutService();
+  getAndRegisterAppService();
 // @stacked-mock-register
 }
 
@@ -86,6 +92,20 @@ MockCartServiceService getAndRegisterCartServiceService() {
   _removeRegistrationIfExists<CartServiceService>();
   final service = MockCartServiceService();
   locator.registerSingleton<CartServiceService>(service);
+  return service;
+}
+
+MockCheckoutService getAndRegisterCheckoutService() {
+  _removeRegistrationIfExists<CheckoutService>();
+  final service = MockCheckoutService();
+  locator.registerSingleton<CheckoutService>(service);
+  return service;
+}
+
+MockAppService getAndRegisterAppService() {
+  _removeRegistrationIfExists<AppService>();
+  final service = MockAppService();
+  locator.registerSingleton<AppService>(service);
   return service;
 }
 // @stacked-mock-create

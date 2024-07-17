@@ -11,12 +11,17 @@ class DashboardViewModel extends ReactiveViewModel {
 
   final List<Widget> dashboardOptions = [
     const HomeView(),
-    Container(color: Colors.blue, child: Center(child: Text('All Products'))),
-    CartView(),
-    Container(color: Colors.yellow, child: Center(child: Text('My Orders'))),
-    Container(color: Colors.purple, child: Center(child: Text('Profile'))),
+    Container(color: Colors.blue, child: const Center(child: Text('All Products'))),
+    const CartView(),
+    Container(color: Colors.yellow, child: const Center(child: Text('My Orders'))),
+    Container(color: Colors.purple, child: const Center(child: Text('Profile'))),
   ];
 
   int get selectedIndex => _appService.selectedIndex;
-  void Function(int value) get onItemTapped => _appService.onItemTapped;
+  void onItemTapped(int value) {
+    _appService.onItemTapped(value);
+  }
+
+  @override
+  List<ListenableServiceMixin> get listenableServices => [_appService];
 }

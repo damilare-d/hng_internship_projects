@@ -11,7 +11,9 @@ import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 import 'package:stage_3_hng_app/models/product_model.dart' as _i8;
+import 'package:stage_3_hng_app/services/app_service.dart' as _i11;
 import 'package:stage_3_hng_app/services/cart_service_service.dart' as _i9;
+import 'package:stage_3_hng_app/services/checkout_service.dart' as _i10;
 import 'package:stage_3_hng_app/services/product_detail_service.dart' as _i7;
 
 // ignore_for_file: type=lint
@@ -895,6 +897,16 @@ class MockCartServiceService extends _i1.Mock
       ) as int);
 
   @override
+  _i5.Future<void> showProductAddedToCartBottomSheet() => (super.noSuchMethod(
+        Invocation.method(
+          #showProductAddedToCartBottomSheet,
+          [],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+
+  @override
   void addToCart(_i8.Product? product) => super.noSuchMethod(
         Invocation.method(
           #addToCart,
@@ -949,6 +961,150 @@ class MockCartServiceService extends _i1.Mock
         returnValue: 0.0,
         returnValueForMissingStub: 0.0,
       ) as double);
+
+  @override
+  void listenToReactiveValues(List<dynamic>? reactiveValues) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #listenToReactiveValues,
+          [reactiveValues],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [CheckoutService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCheckoutService extends _i1.Mock implements _i10.CheckoutService {
+  @override
+  List<Map<String, dynamic>> get checkoutItems => (super.noSuchMethod(
+        Invocation.getter(#checkoutItems),
+        returnValue: <Map<String, dynamic>>[],
+        returnValueForMissingStub: <Map<String, dynamic>>[],
+      ) as List<Map<String, dynamic>>);
+
+  @override
+  int get getTotalItems => (super.noSuchMethod(
+        Invocation.getter(#getTotalItems),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  double get getTotalPrice => (super.noSuchMethod(
+        Invocation.getter(#getTotalPrice),
+        returnValue: 0.0,
+        returnValueForMissingStub: 0.0,
+      ) as double);
+
+  @override
+  int get listenersCount => (super.noSuchMethod(
+        Invocation.getter(#listenersCount),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  void listenToReactiveValues(List<dynamic>? reactiveValues) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #listenToReactiveValues,
+          [reactiveValues],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [AppService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockAppService extends _i1.Mock implements _i11.AppService {
+  @override
+  int get selectedIndex => (super.noSuchMethod(
+        Invocation.getter(#selectedIndex),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  set selectedIndex(int? _selectedIndex) => super.noSuchMethod(
+        Invocation.setter(
+          #selectedIndex,
+          _selectedIndex,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  int get listenersCount => (super.noSuchMethod(
+        Invocation.getter(#listenersCount),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  void onItemTapped(int? value) => super.noSuchMethod(
+        Invocation.method(
+          #onItemTapped,
+          [value],
+        ),
+        returnValueForMissingStub: null,
+      );
 
   @override
   void listenToReactiveValues(List<dynamic>? reactiveValues) =>

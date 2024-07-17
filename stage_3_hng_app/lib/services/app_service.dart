@@ -1,10 +1,12 @@
 import 'package:stacked/stacked.dart';
 
 class AppService with ListenableServiceMixin {
-  int selectedIndex = 0;
+  int _selectedIndex = 0;
+
+  int get selectedIndex => _selectedIndex;
 
   void onItemTapped(int value) {
-    selectedIndex = value;
+    _selectedIndex = value;
     notifyListeners();
   }
 }
