@@ -86,9 +86,9 @@ class PaymentSheet extends StackedView<PaymentSheetModel> {
                     TextFormField(
                       controller: viewModel.fullNameController,
                       decoration: const InputDecoration(
-                        labelText: 'Full Name',
-                        hintText: 'Enter your full name',
-                      ),
+                          labelText: 'Full Name',
+                          hintText: 'Enter your full name',
+                          border: OutlineInputBorder()),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your full name';
@@ -102,6 +102,7 @@ class PaymentSheet extends StackedView<PaymentSheetModel> {
                       decoration: const InputDecoration(
                         labelText: 'Email Address',
                         hintText: 'Enter your email address',
+                        border: OutlineInputBorder(),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -120,6 +121,7 @@ class PaymentSheet extends StackedView<PaymentSheetModel> {
                       decoration: const InputDecoration(
                         labelText: 'Phone Number',
                         hintText: 'Enter your phone number',
+                        border: OutlineInputBorder(),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
