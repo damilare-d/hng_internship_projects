@@ -23,6 +23,9 @@ class ProductDetailService with ListenableServiceMixin {
 
   void setCurrentProduct(Product product) {
     _currentProduct = product;
+    _description = product.description ?? '';
+    _productTitle = product.name ?? '';
+    _price = product.currentPrice != null ? '\$${product.currentPrice}' : '';
     notifyListeners();
   }
 

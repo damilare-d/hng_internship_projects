@@ -102,12 +102,10 @@ class SingleProductView extends StatelessWidget {
   }
 
   Widget _buildSlider(SingleProductViewModel viewModel) {
-    // Extract image URLs from products
     List<String> imageUrls = viewModel.product!.photos
         .map((photo) => 'https://api.timbu.cloud/images/${photo.url}')
         .toList();
 
-    // Use placeholder image if no images are available
     if (imageUrls.isEmpty) {
       imageUrls = ['assets/images/empty_img_placeholders.jpg'];
     }
@@ -140,15 +138,15 @@ class SingleProductView extends StatelessWidget {
                 height: 17.58 / 15)),
         Wrap(
           spacing: 8.0,
-          children: List.generate(6, (index) {
+          children: viewModel.sizes.map((size) {
             return ChoiceChip(
-              label: Text('${32 + index * 3}'),
-              selected: false, // Logic to handle selection
+              label: Text(size),
+              selected: viewModel.selectedSize == size,
               onSelected: (bool selected) {
-                // Handle size selection
+                viewModel.setSelectedSize(size);
               },
             );
-          }),
+          }).toList(),
         ),
       ],
     );
@@ -166,28 +164,28 @@ class SingleProductView extends StatelessWidget {
                 height: 17.58 / 15)),
         Wrap(
           spacing: 8.0,
-          children: List.generate(6, (index) {
+          children: viewModel.colors.map((color) {
             return GestureDetector(
               onTap: () {
-                viewModel.setSelectedColor('Color $index');
+                viewModel.setSelectedColor(color);
               },
               child: Container(
                 width: 32,
                 height: 32,
                 decoration: BoxDecoration(
-                  color: Colors.primaries[index],
+                  color: viewModel.getColorFromString(color),
                   border: Border.all(
-                    color: viewModel.selectedColor == 'Color $index'
+                    color: viewModel.selectedColor == color
                         ? Colors.black
                         : Colors.transparent,
                   ),
                 ),
-                child: viewModel.selectedColor == 'Color $index'
+                child: viewModel.selectedColor == color
                     ? const Icon(Icons.check, color: Colors.white)
                     : null,
               ),
             );
-          }),
+          }).toList(),
         ),
       ],
     );
@@ -256,7 +254,7 @@ class SingleProductView extends StatelessWidget {
               final product = viewModel.products[index];
               return ProductItem(
                 product: product,
-                onTap: () => viewModel.navigateToSingleProductView,
+                onTap: () => viewModel.navigateToSingleProductView(),
                 onAddToCart: () {},
               );
             },

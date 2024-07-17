@@ -8,9 +8,9 @@ import 'package:stage_3_hng_app/services/product_detail_service.dart';
 
 class CartServiceService with ListenableServiceMixin {
   final List<Map<String, dynamic>> _cartItems = [];
+  final BottomSheetService _bottomSheetService = locator<BottomSheetService>();
 
   List<Map<String, dynamic>> get cartItems => _cartItems;
-  final BottomSheetService _bottomSheetService = locator<BottomSheetService>();
 
   Future<void> showProductAddedToCartBottomSheet() async {
     await _bottomSheetService.showCustomSheet(
@@ -18,10 +18,8 @@ class CartServiceService with ListenableServiceMixin {
       title: 'Product Added',
       description: 'The product has been added to your cart.',
     );
-
     // Wait for 5 seconds
     await Future.delayed(const Duration(seconds: 3));
-
     // Close the bottom sheet
     _bottomSheetService.completeSheet(SheetResponse());
   }

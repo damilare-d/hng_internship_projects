@@ -4,10 +4,11 @@ import 'package:stage_3_hng_app/app/app.locator.dart';
 import 'package:stage_3_hng_app/app/app.router.dart';
 import 'package:stage_3_hng_app/services/product_detail_service.dart';
 import '../../../models/product_model.dart';
+import 'package:flutter/material.dart';
 
 class SingleProductViewModel extends ReactiveViewModel {
   final ProductDetailService _productDetailService =
-      locator<ProductDetailService>();
+  locator<ProductDetailService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
   Product? _product;
@@ -15,6 +16,11 @@ class SingleProductViewModel extends ReactiveViewModel {
   List<Product> get products => _productDetailService.products;
 
   String get selectedColor => _productDetailService.selectedColor;
+  String? selectedSize;
+
+  List<String> get sizes => ['S', 'M', 'L', 'XL', 'XXL']; // Example sizes
+  List<String> get colors => ['Red', 'Blue', 'Green', 'Yellow', 'Black', 'White']; // Example colors
+
   int get quantity => _productDetailService.quantity;
   String get description => _product?.description ?? "";
   String get productTitle => _product?.name ?? "";
@@ -35,6 +41,11 @@ class SingleProductViewModel extends ReactiveViewModel {
     notifyListeners();
   }
 
+  void setSelectedSize(String size) {
+    selectedSize = size;
+    notifyListeners();
+  }
+
   void setQuantity(int qty) {
     _productDetailService.setQuantity(qty);
     notifyListeners();
@@ -46,6 +57,25 @@ class SingleProductViewModel extends ReactiveViewModel {
 
   void navigateToCartView() {
     _navigationService.navigateTo(Routes.cartView);
+  }
+
+  Color getColorFromString(String color) {
+    switch (color) {
+      case 'Red':
+        return Colors.red;
+      case 'Blue':
+        return Colors.blue;
+      case 'Green':
+        return Colors.green;
+      case 'Yellow':
+        return Colors.yellow;
+      case 'Black':
+        return Colors.black;
+      case 'White':
+        return Colors.white;
+      default:
+        return Colors.grey;
+    }
   }
 
   @override

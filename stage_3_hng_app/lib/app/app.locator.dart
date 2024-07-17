@@ -12,7 +12,9 @@ import 'package:stacked_services/src/navigation/navigation_service.dart';
 import 'package:stacked_shared/stacked_shared.dart';
 
 import '../services/api_service.dart';
+import '../services/app_service.dart';
 import '../services/cart_service_service.dart';
+import '../services/checkout_service.dart';
 import '../services/product_detail_service.dart';
 
 final locator = StackedLocator.instance;
@@ -32,4 +34,6 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => ProductDetailService());
   locator.registerLazySingleton(() => ApiService());
   locator.registerLazySingleton(() => CartServiceService());
+  locator.registerLazySingleton(() => CheckoutService());
+  locator.registerLazySingleton(() => AppService());
 }
