@@ -13,6 +13,9 @@ import 'package:stage_3_hng_app/services/cart_service_service.dart';
 import 'package:stage_3_hng_app/ui/views/checkout/checkout_view.dart';
 import 'package:stage_3_hng_app/ui/bottom_sheets/payment/payment_sheet.dart';
 import 'package:stage_3_hng_app/ui/views/success/success_view.dart';
+import 'package:stage_3_hng_app/services/checkout_service.dart';
+import 'package:stage_3_hng_app/services/app_service.dart';
+import 'package:stage_3_hng_app/ui/bottom_sheets/product_add_to_cart/product_add_to_cart_sheet.dart';
 // @stacked-import
 
 @StackedApp(
@@ -33,11 +36,14 @@ import 'package:stage_3_hng_app/ui/views/success/success_view.dart';
     LazySingleton(classType: ProductDetailService),
     LazySingleton(classType: ApiService),
     LazySingleton(classType: CartServiceService),
+    LazySingleton(classType: CheckoutService),
+    LazySingleton(classType: AppService),
 // @stacked-service
   ],
   bottomsheets: [
     StackedBottomsheet(classType: NoticeSheet),
     StackedBottomsheet(classType: PaymentSheet),
+    StackedBottomsheet(classType: ProductAddToCartSheet),
 // @stacked-bottom-sheet
   ],
   dialogs: [
