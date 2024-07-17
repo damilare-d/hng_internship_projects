@@ -34,12 +34,12 @@ class ProductAddToCartSheet extends StackedView<ProductAddToCartSheetModel> {
         children: [
           Text(
             'Product Added to Cart',
-            style: Theme.of(context).textTheme.headlineLarge,
+            //style: Theme.of(context).textTheme.headlineLarge,
           ),
           const SizedBox(height: 10),
           Text(
             request.description ?? 'The product has been added to your cart.',
-            style: Theme.of(context).textTheme.labelMedium,
+           // style: Theme.of(context).textTheme.labelMedium,
           ),
         ],
       ),
