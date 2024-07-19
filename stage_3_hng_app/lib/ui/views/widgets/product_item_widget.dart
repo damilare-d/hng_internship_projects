@@ -37,10 +37,10 @@ class ProductItem extends StatelessWidget {
             onTap: onTap,
             child: Image(
               image: (product.photos.isNotEmpty
-                  ? NetworkImage(
-                  "https://api.timbu.cloud/images/${product.photos[0].url}")
-                  : Image.asset('assets/images/empty_img_placeholders.jpg'))
-              as ImageProvider,
+                      ? NetworkImage(
+                          "https://api.timbu.cloud/images/${product.photos[0].url}")
+                      : Image.asset('assets/images/empty_img_placeholders.jpg'))
+                  as ImageProvider,
               height: 180,
               errorBuilder: (context, error, stackTrace) {
                 return Image.asset('assets/images/empty_img_placeholders.jpg');
@@ -55,8 +55,8 @@ class ProductItem extends StatelessWidget {
           Text(
             product.currentPrice.toString(),
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: const Color(0xFF0072C6),
-            ),
+                  color: const Color(0xFF0072C6),
+                ),
           ),
           ElevatedButton(
             onPressed: () {

@@ -28,9 +28,10 @@ class Product {
       photos: json['photos'] != null
           ? List<Photo>.from(json['photos'].map((x) => Photo.fromJson(x)))
           : [],
-      currentPrice: json['current_price'] != null && json['current_price'].isNotEmpty
-          ? (json['current_price'][0]['NGN'][0] as double?)
-          : null,
+      currentPrice:
+          json['current_price'] != null && json['current_price'].isNotEmpty
+              ? (json['current_price'][0]['NGN'][0] as double?)
+              : null,
       availableQuantity: json['available_quantity'],
       dateCreated: json['date_created'],
       buyingPrice: json['buying_price'],

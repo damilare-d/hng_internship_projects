@@ -3,7 +3,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stage_3_hng_app/ui/bottom_sheets/product_add_to_cart/product_add_to_cart_sheet_model.dart';
 
-
 class ProductAddToCartSheet extends StackedView<ProductAddToCartSheetModel> {
   final Function(SheetResponse)? completer;
   final SheetRequest request;
@@ -16,10 +15,10 @@ class ProductAddToCartSheet extends StackedView<ProductAddToCartSheetModel> {
 
   @override
   Widget builder(
-      BuildContext context,
-      ProductAddToCartSheetModel viewModel,
-      Widget? child,
-      ) {
+    BuildContext context,
+    ProductAddToCartSheetModel viewModel,
+    Widget? child,
+  ) {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: const BoxDecoration(
@@ -39,7 +38,7 @@ class ProductAddToCartSheet extends StackedView<ProductAddToCartSheetModel> {
           const SizedBox(height: 10),
           Text(
             request.description ?? 'The product has been added to your cart.',
-           // style: Theme.of(context).textTheme.labelMedium,
+            // style: Theme.of(context).textTheme.labelMedium,
           ),
         ],
       ),

@@ -20,7 +20,7 @@ class ProductView extends StatelessWidget {
             Center(
               child: product.photos.isNotEmpty
                   ? Image.network(
-                     "https://api.timbu.cloud/images/${product.photos[0].url}",
+                      "https://api.timbu.cloud/images/${product.photos[0].url}",
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
                             'assets/images/empty_img_placeholders.jpg');

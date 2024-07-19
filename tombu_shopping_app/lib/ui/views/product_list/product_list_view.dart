@@ -24,49 +24,49 @@ class ProductListView extends StatelessWidget {
           body: viewModel.isBusy
               ? const Center(child: CircularProgressIndicator())
               : Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: viewModel.products.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        viewModel.toggleExpanded(index);
-                      },
-                      child: ProductItemWidget(
-                        product: viewModel.products[index],
-                        expanded: viewModel.expanded[index],
-                        onTapIcon: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                              builder: (BuildContext context) =>
-                                  ProductView(
-                                      product: viewModel.products[index]),
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: viewModel.products.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              viewModel.toggleExpanded(index);
+                            },
+                            child: ProductItemWidget(
+                              product: viewModel.products[index],
+                              expanded: viewModel.expanded[index],
+                              onTapIcon: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<void>(
+                                    builder: (BuildContext context) =>
+                                        ProductView(
+                                            product: viewModel.products[index]),
+                                  ),
+                                );
+                              },
                             ),
                           );
                         },
                       ),
-                    );
-                  },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.arrow_back),
+                          onPressed: viewModel.previousPage,
+                        ),
+                        Text('Page ${viewModel.currentPage}'),
+                        IconButton(
+                          icon: const Icon(Icons.arrow_forward),
+                          onPressed: viewModel.nextPage,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: viewModel.previousPage,
-                  ),
-                  Text('Page ${viewModel.currentPage}'),
-                  IconButton(
-                    icon: const Icon(Icons.arrow_forward),
-                    onPressed: viewModel.nextPage,
-                  ),
-                ],
-              ),
-            ],
-          ),
         );
       },
     );
