@@ -11,10 +11,13 @@ class DashboardViewModel extends ReactiveViewModel {
 
   final List<Widget> dashboardOptions = [
     const HomeView(),
-    Container(color: Colors.blue, child: const Center(child: Text('All Products'))),
+    Container(
+        color: Colors.blue, child: const Center(child: Text('All Products'))),
     const CartView(),
-    Container(color: Colors.yellow, child: const Center(child: Text('My Orders'))),
-    Container(color: Colors.purple, child: const Center(child: Text('Profile'))),
+    Container(
+        color: Colors.yellow, child: const Center(child: Text('My Orders'))),
+    Container(
+        color: Colors.purple, child: const Center(child: Text('Profile'))),
   ];
 
   int get selectedIndex => _appService.selectedIndex;
