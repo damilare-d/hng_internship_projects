@@ -1,6 +1,6 @@
-
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:stage_4_hng_app/services/app_service.dart';
 
 import '../../../app/app.bottomsheets.dart';
 import '../../../app/app.dialogs.dart';
@@ -17,6 +17,7 @@ class HomeViewModel extends BaseViewModel {
   final _navigationService = locator<NavigationService>();
   final _productDetailService = locator<ProductDetailService>();
   final _apiService = locator<ApiService>();
+  final _appService = locator<AppService>();
 
   List<Product> get products => _productDetailService.products;
 
@@ -63,5 +64,9 @@ class HomeViewModel extends BaseViewModel {
     } finally {
       setBusy(false);
     }
+  }
+
+  void viewMore() {
+    _appService.onItemTapped(1);
   }
 }

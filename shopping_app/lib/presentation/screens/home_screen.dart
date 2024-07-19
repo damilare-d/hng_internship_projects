@@ -36,13 +36,13 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     final List<Widget> _screens = [
       ProductsScreen(products: products, addToCheckout: _addToCheckout),
-      CheckoutScreen(checkoutItems: checkoutItems, removeFromCheckout: _removeFromCheckout),
+      CheckoutScreen(
+          checkoutItems: checkoutItems,
+          removeFromCheckout: _removeFromCheckout),
     ];
 
     return Scaffold(
@@ -50,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Shopping App'),
       ),
       body: _screens[_selectedIndex],
-
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

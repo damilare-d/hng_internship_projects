@@ -45,11 +45,14 @@ class HomeView extends StackedView<HomeViewModel> {
                 const SizedBox(height: 16.0),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: viewModel.viewMore,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF0072C6),
                     ),
-                    child: const Text('View More'),
+                    child: const Text(
+                      'View More',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
               ],
