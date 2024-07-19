@@ -5,7 +5,6 @@ import 'package:stage_4_hng_app/app/app.locator.dart';
 import 'package:stage_4_hng_app/app/app.router.dart';
 import 'package:stage_4_hng_app/services/checkout_service.dart';
 
-
 class CheckoutViewModel extends BaseViewModel {
   final _checkOutService = locator<CheckoutService>();
   final _navigationService = locator<NavigationService>();
