@@ -9,8 +9,7 @@ class ApiService {
   Future<List<Product>> fetchProducts(int page, int size) async {
     final response = await http.get(
       Uri.parse(
-          "$baseUrl?organization_id=${dotenv.env['ORGANIZATION_ID']}&Appid=${dotenv.env['APP_ID']}&Apikey=${dotenv.env['API_KEY']}&page=$page&size=$size",
-
+        "$baseUrl?organization_id=${dotenv.env['ORGANIZATION_ID']}&Appid=${dotenv.env['APP_ID']}&Apikey=${dotenv.env['API_KEY']}&page=$page&size=$size",
       ),
     );
 
@@ -22,7 +21,8 @@ class ApiService {
       List<dynamic> items = data['items'];
       return items.map((item) => Product.fromJson(item)).toList();
     } else {
-      throw Exception('Failed to load products: Server Error: Something went wrong on the API server.');
+      throw Exception(
+          'Failed to load products: Server Error: Something went wrong on the API server.');
     }
   }
 }
