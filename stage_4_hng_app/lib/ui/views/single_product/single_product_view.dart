@@ -3,7 +3,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stage_4_hng_app/ui/views/widgets/product_item_widget.dart';
 
-
 import 'single_product_viewmodel.dart';
 
 class SingleProductView extends StatelessWidget {

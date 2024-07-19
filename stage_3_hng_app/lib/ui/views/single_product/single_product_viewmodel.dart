@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 
 class SingleProductViewModel extends ReactiveViewModel {
   final ProductDetailService _productDetailService =
-  locator<ProductDetailService>();
+      locator<ProductDetailService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
   Product? _product;
@@ -19,7 +19,8 @@ class SingleProductViewModel extends ReactiveViewModel {
   String? selectedSize;
 
   List<String> get sizes => ['S', 'M', 'L', 'XL', 'XXL']; // Example sizes
-  List<String> get colors => ['Red', 'Blue', 'Green', 'Yellow', 'Black', 'White']; // Example colors
+  List<String> get colors =>
+      ['Red', 'Blue', 'Green', 'Yellow', 'Black', 'White']; // Example colors
 
   int get quantity => _productDetailService.quantity;
   String get description => _product?.description ?? "";

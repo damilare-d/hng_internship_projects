@@ -10,6 +10,8 @@ import 'package:flutter/material.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
 import 'package:stacked_services/stacked_services.dart' as _i2;
+import 'package:stage_4_hng_app/models/product_model.dart' as _i8;
+import 'package:stage_4_hng_app/services/order_service.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -666,6 +668,100 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
         Invocation.method(
           #completeDialog,
           [response],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [OrderService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockOrderService extends _i1.Mock implements _i7.OrderService {
+  @override
+  List<Map<String, dynamic>> get orders => (super.noSuchMethod(
+        Invocation.getter(#orders),
+        returnValue: <Map<String, dynamic>>[],
+        returnValueForMissingStub: <Map<String, dynamic>>[],
+      ) as List<Map<String, dynamic>>);
+
+  @override
+  int get listenersCount => (super.noSuchMethod(
+        Invocation.getter(#listenersCount),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  void addOrder(
+    _i8.Product? product,
+    int? quantity,
+    String? color,
+    String? size,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #addOrder,
+          [
+            product,
+            quantity,
+            color,
+            size,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addOrders(List<Map<String, dynamic>>? newOrders) => super.noSuchMethod(
+        Invocation.method(
+          #addOrders,
+          [newOrders],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void clearOrders() => super.noSuchMethod(
+        Invocation.method(
+          #clearOrders,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void listenToReactiveValues(List<dynamic>? reactiveValues) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #listenToReactiveValues,
+          [reactiveValues],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
         ),
         returnValueForMissingStub: null,
       );
