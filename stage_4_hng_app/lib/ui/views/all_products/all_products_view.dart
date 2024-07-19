@@ -8,10 +8,10 @@ class AllProductsView extends StackedView<AllProductsViewModel> {
 
   @override
   Widget builder(
-      BuildContext context,
-      AllProductsViewModel viewModel,
-      Widget? child,
-      ) {
+    BuildContext context,
+    AllProductsViewModel viewModel,
+    Widget? child,
+  ) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(title: const Text('All Products')),
@@ -20,34 +20,36 @@ class AllProductsView extends StackedView<AllProductsViewModel> {
         child: viewModel.products.isEmpty
             ? const Center(child: Text('No products available'))
             : GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8.0,
-            mainAxisSpacing: 8.0,
-            childAspectRatio: 0.7,
-          ),
-          itemCount: viewModel.products.length,
-          itemBuilder: (context, index) {
-            final product = viewModel.products[index];
-            return _ProductItem(
-              product: product,
-              onTap: () => viewModel.navigateToProductDetails(product),
-            );
-          },
-        ),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
+                  childAspectRatio: 0.7,
+                ),
+                itemCount: viewModel.products.length,
+                itemBuilder: (context, index) {
+                  final product = viewModel.products[index];
+                  return _ProductItem(
+                    product: product,
+                    onTap: () => viewModel.navigateToProductDetails(product),
+                  );
+                },
+              ),
       ),
     );
   }
 
   @override
-  AllProductsViewModel viewModelBuilder(BuildContext context) => AllProductsViewModel();
+  AllProductsViewModel viewModelBuilder(BuildContext context) =>
+      AllProductsViewModel();
 }
 
 class _ProductItem extends StatelessWidget {
   final Product product;
   final VoidCallback onTap;
 
-  const _ProductItem({required this.product, required this.onTap, Key? key}) : super(key: key);
+  const _ProductItem({required this.product, required this.onTap, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
