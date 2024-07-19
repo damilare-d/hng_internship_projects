@@ -13,23 +13,20 @@ class BrandWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 64,
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 40,
-            backgroundColor: const Color(0xFFF9F9F9),
-            child: SvgPicture.asset(
-              logoPath,
-              width: 24,
-              height: 24,
-            ),
+    return Column(
+      children: [
+        CircleAvatar(
+          radius: 40,
+          backgroundColor: const Color(0xFFF9F9F9),
+          child: SvgPicture.asset(
+            logoPath,
+            width: 24,
+            height: 24,
           ),
-          const SizedBox(height: 8),
-          Text(brandName, style: Theme.of(context).textTheme.labelMedium),
-        ],
-      ),
+        ),
+        //const SizedBox(height: 8),
+        Text(brandName, style: Theme.of(context).textTheme.labelMedium),
+      ],
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stage_4_hng_app/ui/views/widgets/empty_state_widget.dart';
 import 'package:stage_4_hng_app/ui/views/widgets/error_state_widget.dart';
+import 'package:stage_4_hng_app/ui/views/widgets/product_carousel_sllider.dart';
 import 'package:stage_4_hng_app/ui/views/widgets/product_item_widget.dart';
 import '../widgets/brand_widget.dart';
 import 'home_viewmodel.dart';
@@ -35,7 +36,8 @@ class HomeView extends StackedView<HomeViewModel> {
               children: [
                 _buildUserGreeting(context),
                 const SizedBox(height: 16.0),
-                _buildSlider(viewModel),
+                //_buildSlider(viewModel),
+                ProductCarouselSlider(viewModel: viewModel),
                 const SizedBox(height: 16.0),
                 _buildBrandsSection(),
                 const SizedBox(height: 16.0),
@@ -103,34 +105,6 @@ Widget _buildUserGreeting(BuildContext context) {
   );
 }
 
-Widget _buildSlider(HomeViewModel viewModel) {
-  // Extract image URLs from products
-  List<String> imageUrls = viewModel.products
-      .expand((product) => product.photos
-          .map((photo) => 'https://api.timbu.cloud/images/${photo.url}'))
-      .toList();
-
-  // Use placeholder image if no images are available
-  if (imageUrls.isEmpty) {
-    imageUrls = ['assets/images/empty_img_placeholders.jpg'];
-  }
-
-  return _buildCarouselSlider(imageUrls);
-}
-
-Widget _buildCarouselSlider(List<String> imageUrls) {
-  return CarouselSlider(
-    options: CarouselOptions(height: 200.0, autoPlay: true),
-    items: imageUrls.map((url) {
-      return Builder(
-        builder: (BuildContext context) {
-          return Image.network(url, fit: BoxFit.cover);
-        },
-      );
-    }).toList(),
-  );
-}
-
 Widget _buildBrandsSection() {
   final Map<String, String> brands = {
     "Adidas": "assets/svgs/adidas.svg",
@@ -153,26 +127,24 @@ Widget _buildBrandsSection() {
         ),
       ),
       const SizedBox(height: 16),
-      Flexible(
-        fit: FlexFit.loose,
-        child: GridView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 4,
-            mainAxisSpacing: 4,
-          ),
-          itemCount: brands.length,
-          itemBuilder: (context, index) {
-            String brandName = brands.keys.elementAt(index);
-            String logoPath = brands.values.elementAt(index);
-            return BrandWidget(
-              brandName: brandName,
-              logoPath: logoPath,
-            );
-          },
+      GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          crossAxisSpacing: 4,
+         mainAxisSpacing: 4,
+          childAspectRatio: 0.8,
         ),
+        itemCount: brands.length,
+        itemBuilder: (context, index) {
+          String brandName = brands.keys.elementAt(index);
+          String logoPath = brands.values.elementAt(index);
+          return BrandWidget(
+            brandName: brandName,
+            logoPath: logoPath,
+          );
+        },
       ),
     ],
   );
@@ -210,7 +182,7 @@ Widget _buildSpecialOffersSection(HomeViewModel viewModel) {
               crossAxisCount: 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
-              childAspectRatio: 0.5,
+              childAspectRatio: 0.6,
             ),
             itemCount: 4,
             itemBuilder: (context, index) {
@@ -265,7 +237,7 @@ Widget _buildFeaturedSneakersSection(HomeViewModel viewModel) {
               crossAxisCount: 2,
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
-              childAspectRatio: 0.5,
+              childAspectRatio: 0.6,
             ),
             itemCount: viewModel.products.length,
             itemBuilder: (context, index) {
