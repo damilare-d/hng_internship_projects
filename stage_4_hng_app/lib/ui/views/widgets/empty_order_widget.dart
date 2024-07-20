@@ -10,7 +10,6 @@ class EmptyOrderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final navigationService = locator<NavigationService>();
     final appService = locator<AppService>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,7 +31,6 @@ class EmptyOrderWidget extends StatelessWidget {
           buttonText: "Discover products",
           onTap: () {
             appService.onItemTapped(1);
-           // navigationService.navigateTo(Routes.allProductsView);
           },
         ),
       ],

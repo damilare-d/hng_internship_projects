@@ -130,9 +130,12 @@ class _ProductItemState extends State<ProductItem> {
               ),
               Container(
                 width: 36,
-                height: 28,
+                height: 36,
                 decoration:
-                    const BoxDecoration(color: Color.fromRGBO(0, 114, 98, 0.12)),
+                     BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                        color: const Color.fromRGBO(0, 114, 198, 0.12)),
+                alignment: Alignment.center,
                 child: IconButton(
                   onPressed: () {
                     cartService.addToCart(widget.product);
@@ -141,8 +144,7 @@ class _ProductItemState extends State<ProductItem> {
                   },
                   icon: const Icon(
                     Icons.shopping_basket_outlined,
-                   // size: 12,
-                    //color: Color(0xff0072C61F),
+
                   ),
                 ),
               ),
