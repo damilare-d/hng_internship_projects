@@ -24,6 +24,10 @@ class EmptyOrderWidget extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
+        const Text("You do not have any active order", style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),),
+        const SizedBox(
+          height: 8,
+        ),
         ButtonWidget(
           buttonText: "Discover products",
           onTap: () {

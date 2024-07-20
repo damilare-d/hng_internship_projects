@@ -9,7 +9,7 @@ class CartServiceService with ListenableServiceMixin {
   final List<Map<String, dynamic>> _cartItems = [];
   final BottomSheetService _bottomSheetService = locator<BottomSheetService>();
 
-  List<Map<String, dynamic>> get cartItems => _cartItems;
+  List<Map<String, dynamic>> get  cartItems => _cartItems;
 
   Future<void> showProductAddedToCartBottomSheet() async {
     await _bottomSheetService.showCustomSheet(

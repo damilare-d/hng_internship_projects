@@ -10,7 +10,7 @@ class CartViewModel extends ReactiveViewModel {
   final _cartService = locator<CartServiceService>();
   final _navigationService = locator<NavigationService>();
 
-  get cartItems => _cartService.cartItems;
+ List get cartItems => _cartService.cartItems;
   get getTotalPrice => _cartService.getTotalPrice();
 
   void onTapCheckOut() {
