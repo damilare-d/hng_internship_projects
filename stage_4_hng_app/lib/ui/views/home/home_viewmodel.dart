@@ -53,6 +53,11 @@ class HomeViewModel extends BaseViewModel {
     _navigationService.navigateTo(Routes.singleProductView);
   }
 
+  void navigateToWishListView (){
+    print("button wishlist tapped");
+    _navigationService.navigateTo(Routes.wishlistView);
+  }
+
   Future<void> fetchProducts() async {
     setBusy(true);
     try {

@@ -27,6 +27,10 @@ class HomeView extends StackedView<HomeViewModel> {
                 icon: const Icon(Icons.search),
                 onPressed: () {},
               ),
+              IconButton(
+                icon: const Icon(Icons.favorite_border),
+                onPressed: ()=> viewModel.navigateToWishListView(),
+              ),
             ],
           ),
           body: SingleChildScrollView(
@@ -133,7 +137,7 @@ Widget _buildBrandsSection() {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 4,
           crossAxisSpacing: 4,
-         mainAxisSpacing: 4,
+          mainAxisSpacing: 4,
           childAspectRatio: 0.8,
         ),
         itemCount: brands.length,
@@ -191,9 +195,6 @@ Widget _buildSpecialOffersSection(HomeViewModel viewModel) {
                 price: '\$50',
                 name: 'Product $index',
                 product: viewModel.products[index],
-                onAddToCart: () {
-                  // Add to cart action
-                },
                 onTap: () => viewModel
                     .navigateToSingleProductView(viewModel.products[index]),
               );
