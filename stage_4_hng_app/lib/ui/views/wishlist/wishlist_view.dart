@@ -25,29 +25,32 @@ class WishlistView extends StackedView<WishlistViewModel> {
       ),
       body: viewModel.wishList.isEmpty
           ? const EmptyWishlist()
-          : Column(
-              children: [
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 4,
-                    mainAxisSpacing: 4,
-                    childAspectRatio: 0.8,
+          : Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+                children: [
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 4,
+                      mainAxisSpacing: 4,
+                      childAspectRatio: 0.6,
+                    ),
+                    itemCount: viewModel.wishList.length,
+                    itemBuilder: (context, index) {
+                      return WishListItem(
+                        onAddToCart: () {},
+                        onTap: ()=> viewModel
+                            .navigateToSingleProductView(viewModel.wishList[index]),
+                        product: viewModel.wishList[index],
+                      );
+                    },
                   ),
-                  itemCount: viewModel.wishList.length,
-                  itemBuilder: (context, index) {
-                    return WishListItem(
-                      onAddToCart: () {},
-                      onTap: ()=> viewModel
-                          .navigateToSingleProductView(viewModel.wishList[index]),
-                      product: viewModel.wishList[index],
-                    );
-                  },
-                ),
-              ],
-            ),
+                ],
+              ),
+          ),
     );
   }
 
