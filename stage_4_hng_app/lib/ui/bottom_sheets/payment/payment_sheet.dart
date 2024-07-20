@@ -4,6 +4,7 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stage_4_hng_app/app/app.locator.dart';
 import 'package:stage_4_hng_app/app/app.router.dart';
 import 'package:stage_4_hng_app/ui/bottom_sheets/payment/payment_sheet_model.dart';
+import 'package:stage_4_hng_app/ui/views/widgets/button_widget.dart';
 
 class PaymentSheet extends StackedView<PaymentSheetModel> {
   final Function(SheetResponse)? completer;
@@ -136,16 +137,26 @@ class PaymentSheet extends StackedView<PaymentSheetModel> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: () {
+              ButtonWidget(
+                buttonText: "Proceed to payment",
+                onTap: () {
                   if (viewModel.validateForm()) {
                     Navigator.pop(context);
                     final navigationService = locator<NavigationService>();
                     navigationService.navigateTo(Routes.successView);
                   }
                 },
-                child: const Text('Submit'),
               ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     if (viewModel.validateForm()) {
+              //       Navigator.pop(context);
+              //       final navigationService = locator<NavigationService>();
+              //       navigationService.navigateTo(Routes.successView);
+              //     }
+              //   },
+              //   child: const Text('Submit'),
+              // ),
             ],
           ),
         ),

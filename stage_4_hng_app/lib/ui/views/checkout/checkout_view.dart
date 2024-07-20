@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stage_4_hng_app/models/product_model.dart';
+import 'package:stage_4_hng_app/ui/views/widgets/button_widget.dart';
 import 'package:stage_4_hng_app/ui/views/widgets/checkout_widget.dart';
 import 'checkout_viewmodel.dart';
 
@@ -45,11 +46,11 @@ class CheckoutView extends StackedView<CheckoutViewModel> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
-                      onPressed: viewModel.cancel, child: const Text("Cancel")),
-                  ElevatedButton(
-                    onPressed: viewModel.showPaymentSheet,
-                    child: const Text('Proceed'),
-                  ),
+                      onPressed: viewModel.cancel, child: const Text("Cancel", style: TextStyle(color: Colors.black),)),
+                  ButtonWidget(
+                    width: 88,
+                    buttonText: "Proceed", onTap: viewModel.showPaymentSheet,),
+
                 ],
               ),
             ),

@@ -21,12 +21,13 @@ class ButtonWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: width ?? double.maxFinite,
-        height: height ?? 35,
+        height: height ?? 42,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: const Color(0xff0072C6),
         ),
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             if (icon != null) Icon(icon),
             Text(
