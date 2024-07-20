@@ -17,6 +17,7 @@ import '../services/cart_service_service.dart';
 import '../services/checkout_service.dart';
 import '../services/order_service.dart';
 import '../services/product_detail_service.dart';
+import '../services/wishlist_service.dart';
 
 final locator = StackedLocator.instance;
 
@@ -38,4 +39,5 @@ Future<void> setupLocator({
   locator.registerLazySingleton(() => CheckoutService());
   locator.registerLazySingleton(() => AppService());
   locator.registerLazySingleton(() => OrderService());
+  locator.registerLazySingleton(() => WishlistService());
 }

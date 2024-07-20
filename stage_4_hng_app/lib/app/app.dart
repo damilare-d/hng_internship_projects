@@ -20,6 +20,8 @@ import 'package:stage_4_hng_app/services/order_service.dart';
 import 'package:stage_4_hng_app/ui/views/order/orders_view.dart';
 import 'package:stage_4_hng_app/ui/views/single_order/single_order_view.dart';
 import 'package:stage_4_hng_app/ui/views/all_products/all_products_view.dart';
+import 'package:stage_4_hng_app/services/wishlist_service.dart';
+import 'package:stage_4_hng_app/ui/views/wishlist/wishlist_view.dart';
 // @stacked-import
 
 @StackedApp(
@@ -34,6 +36,7 @@ import 'package:stage_4_hng_app/ui/views/all_products/all_products_view.dart';
     MaterialRoute(page: OrdersView),
     MaterialRoute(page: SingleOrderView),
     MaterialRoute(page: AllProductsView),
+    MaterialRoute(page: WishlistView),
 // @stacked-route
   ],
   dependencies: [
@@ -46,6 +49,7 @@ import 'package:stage_4_hng_app/ui/views/all_products/all_products_view.dart';
     LazySingleton(classType: CheckoutService),
     LazySingleton(classType: AppService),
     LazySingleton(classType: OrderService),
+    LazySingleton(classType: WishlistService),
 // @stacked-service
   ],
   bottomsheets: [
