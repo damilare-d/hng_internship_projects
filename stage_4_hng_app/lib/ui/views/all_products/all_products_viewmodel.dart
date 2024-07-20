@@ -6,7 +6,8 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:stage_4_hng_app/app/app.router.dart';
 
 class AllProductsViewModel extends BaseViewModel {
-  final ProductDetailService _productDetailService = locator<ProductDetailService>();
+  final ProductDetailService _productDetailService =
+      locator<ProductDetailService>();
   final NavigationService _navigationService = locator<NavigationService>();
 
   List<Product> get products => _productDetailService.products;

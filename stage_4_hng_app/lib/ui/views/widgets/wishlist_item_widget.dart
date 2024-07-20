@@ -141,8 +141,8 @@ class _wishLishItemState extends State<WishListItem> {
                   },
                   icon: const Icon(
                     Icons.shopping_basket_outlined,
-                    // size: 12,
-                    //color: Color(0xff0072C61F),
+                    size: 12,
+                    color: Color(0xff0072C61F),
                   ),
                 ),
               ),

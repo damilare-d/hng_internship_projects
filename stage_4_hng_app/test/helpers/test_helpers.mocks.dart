@@ -12,6 +12,7 @@ import 'package:mockito/src/dummies.dart' as _i3;
 import 'package:stacked_services/stacked_services.dart' as _i2;
 import 'package:stage_4_hng_app/models/product_model.dart' as _i8;
 import 'package:stage_4_hng_app/services/order_service.dart' as _i7;
+import 'package:stage_4_hng_app/services/wishlist_service.dart' as _i9;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -724,6 +725,99 @@ class MockOrderService extends _i1.Mock implements _i7.OrderService {
   void clearOrders() => super.noSuchMethod(
         Invocation.method(
           #clearOrders,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void listenToReactiveValues(List<dynamic>? reactiveValues) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #listenToReactiveValues,
+          [reactiveValues],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void addListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeListener(void Function()? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
+/// A class which mocks [WishlistService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockWishlistService extends _i1.Mock implements _i9.WishlistService {
+  @override
+  List<_i8.Product> get wishlist => (super.noSuchMethod(
+        Invocation.getter(#wishlist),
+        returnValue: <_i8.Product>[],
+        returnValueForMissingStub: <_i8.Product>[],
+      ) as List<_i8.Product>);
+
+  @override
+  int get listenersCount => (super.noSuchMethod(
+        Invocation.getter(#listenersCount),
+        returnValue: 0,
+        returnValueForMissingStub: 0,
+      ) as int);
+
+  @override
+  bool isWishlisted(_i8.Product? product) => (super.noSuchMethod(
+        Invocation.method(
+          #isWishlisted,
+          [product],
+        ),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+
+  @override
+  void addToWishlist(_i8.Product? product) => super.noSuchMethod(
+        Invocation.method(
+          #addToWishlist,
+          [product],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void removeFromWishlist(_i8.Product? product) => super.noSuchMethod(
+        Invocation.method(
+          #removeFromWishlist,
+          [product],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void clearWishlist() => super.noSuchMethod(
+        Invocation.method(
+          #clearWishlist,
           [],
         ),
         returnValueForMissingStub: null,

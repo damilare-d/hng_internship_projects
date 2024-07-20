@@ -3,6 +3,7 @@ import 'package:mockito/mockito.dart';
 import 'package:stage_4_hng_app/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:stage_4_hng_app/services/order_service.dart';
+import 'package:stage_4_hng_app/services/wishlist_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -12,6 +13,7 @@ import 'test_helpers.mocks.dart';
   MockSpec<BottomSheetService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
   MockSpec<OrderService>(onMissingStub: OnMissingStub.returnDefault),
+  MockSpec<WishlistService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
 ])
 void registerServices() {
@@ -19,6 +21,7 @@ void registerServices() {
   getAndRegisterBottomSheetService();
   getAndRegisterDialogService();
   getAndRegisterOrderService();
+  getAndRegisterWishlistService();
 // @stacked-mock-register
 }
 
@@ -76,6 +79,13 @@ MockOrderService getAndRegisterOrderService() {
   _removeRegistrationIfExists<OrderService>();
   final service = MockOrderService();
   locator.registerSingleton<OrderService>(service);
+  return service;
+}
+
+MockWishlistService getAndRegisterWishlistService() {
+  _removeRegistrationIfExists<WishlistService>();
+  final service = MockWishlistService();
+  locator.registerSingleton<WishlistService>(service);
   return service;
 }
 // @stacked-mock-create

@@ -45,6 +45,7 @@ class SingleProductViewModel extends ReactiveViewModel {
 
   void setSelectedSize(String size) {
     selectedSize = size;
+    _productDetailService.setSelectedSize(size);
     notifyListeners();
   }
 

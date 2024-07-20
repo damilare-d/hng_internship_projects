@@ -6,28 +6,32 @@ import 'package:stage_4_hng_app/ui/views/home/home_viewmodel.dart';
 class ProductCarouselSlider extends StatelessWidget {
   final HomeViewModel viewModel;
 
-  const ProductCarouselSlider({required this.viewModel, Key? key}) : super(key: key);
+  const ProductCarouselSlider({required this.viewModel, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return _buildSlider(viewModel, context);
   }
 
-  Widget _buildSlider(HomeViewModel viewModel,BuildContext context ) {
+  Widget _buildSlider(HomeViewModel viewModel, BuildContext context) {
     if (viewModel.products.isEmpty) {
       return Image.asset('assets/images/empty_img_placeholders.jpg');
     }
 
     return CarouselSlider(
-      options: CarouselOptions(height: 200.0,viewportFraction: 0.9, autoPlay: true),
+      options:
+          CarouselOptions(height: 200.0, viewportFraction: 0.9, autoPlay: true),
       items: viewModel.products.map((product) {
-        String imageUrl = 'https://api.timbu.cloud/images/${product.photos.first.url}';
+        String imageUrl =
+            'https://api.timbu.cloud/images/${product.photos.first.url}';
         return _buildCarouselItem(context, imageUrl, product);
       }).toList(),
     );
   }
 
-  Widget _buildCarouselItem(BuildContext context, String imageUrl, Product product) {
+  Widget _buildCarouselItem(
+      BuildContext context, String imageUrl, Product product) {
     return Container(
       //padding: const EdgeInsets.all(16),
       height: 360,
@@ -48,7 +52,7 @@ class ProductCarouselSlider extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Brand name",  // Assuming you have a brand name
+                "Brand name", // Assuming you have a brand name
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               const SizedBox(height: 8),
@@ -60,8 +64,8 @@ class ProductCarouselSlider extends StatelessWidget {
               Text(
                 '\$${product.currentPrice}',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                  color: const Color(0xFF0072C6),
-                ),
+                      color: const Color(0xFF0072C6),
+                    ),
               ),
             ],
           ),

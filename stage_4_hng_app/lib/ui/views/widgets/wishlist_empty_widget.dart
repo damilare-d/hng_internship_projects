@@ -12,6 +12,7 @@ class EmptyWishlist extends StatelessWidget {
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        const SizedBox(height: 16,),
         const Image(image: AssetImage("assets/images/emty_wishlist_State.png")),
         const SizedBox(height: 8,),
         const Text("You do not have any active order", style: TextStyle(

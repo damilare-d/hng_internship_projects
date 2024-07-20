@@ -13,7 +13,7 @@ class CartServiceService with ListenableServiceMixin {
 
   Future<void> showProductAddedToCartBottomSheet() async {
     await _bottomSheetService.showCustomSheet(
-      variant: BottomSheetType.productAddToCart,
+      variant: BottomSheetType.notice,
       title: 'Product Added',
       description: 'The product has been added to your cart.',
     );
