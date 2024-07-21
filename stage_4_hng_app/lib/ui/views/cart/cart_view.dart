@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stage_4_hng_app/models/product_model.dart';
 import 'package:stage_4_hng_app/ui/views/cart/cart_viewmodel.dart';
+import 'package:stage_4_hng_app/ui/views/widgets/button_widget.dart';
 
 import '../widgets/cart_widget.dart';
 
@@ -65,11 +66,18 @@ class CartView extends StatelessWidget {
                               ),
                             ],
                           ),
-                          ElevatedButton.icon(
-                            onPressed: model.onTapCheckOut,
-                            icon: const Icon(Icons.shopping_cart),
-                            label: const Text('Checkout'),
-                          ),
+                          Spacer(),
+                          ButtonWidget(
+                              width: 150,
+                              icon: Icons.shopping_basket_outlined,
+                              onTap: model.onTapCheckOut,
+
+                              buttonText: "Checkout"),
+                          // ElevatedButton.icon(
+                          //   onPressed: model.onTapCheckOut,
+                          //   icon: const Icon(Icons.shopping_cart),
+                          //   label: const Text('Checkout'),
+                          // ),
                         ],
                       ),
                     ),

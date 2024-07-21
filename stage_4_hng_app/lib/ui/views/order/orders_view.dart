@@ -28,7 +28,7 @@ class OrdersView extends StatelessWidget {
                   leading:  Image(
                     image: (order['product'].photos.isNotEmpty
                         ? NetworkImage(
-                        "https://api.timbu.cloud/images/${order['product'].product.photos[0].url}")
+                        "https://api.timbu.cloud/images/${order['product'].photos[0].url}")
                         : Image.asset(
                         'assets/images/empty_img_placeholders.jpg'))
                     as ImageProvider,

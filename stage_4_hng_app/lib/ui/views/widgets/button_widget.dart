@@ -29,7 +29,12 @@ class ButtonWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (icon != null) Icon(icon),
+            if (icon != null) Row(
+              children: [
+                Icon(icon, color: Colors.white,),
+              ],
+            ),
+            const SizedBox(height:8),
             Text(
               buttonText,
               style: const TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stage_4_hng_app/ui/views/widgets/button_widget.dart';
 import 'package:stage_4_hng_app/ui/views/widgets/product_item_widget.dart';
 
 import 'single_product_viewmodel.dart';
@@ -275,12 +276,14 @@ class SingleProductView extends StatelessWidget {
                 fontSize: 24,
                 fontWeight: FontWeight.w500,
                 height: 28.13 / 24)),
-        ElevatedButton(
-          onPressed: () {
+        ButtonWidget(
+          width: 150,
+          icon: Icons.shopping_basket_outlined,
+          onTap:() {
             viewModel.navigateToCartView();
           },
-          child: const Text('Add to Cart'),
-        ),
+            buttonText: "Add to Cart"),
+
       ],
     );
   }
