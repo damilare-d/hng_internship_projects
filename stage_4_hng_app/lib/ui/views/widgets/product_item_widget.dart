@@ -20,7 +20,7 @@ class ProductItem extends StatefulWidget {
     this.imageUrl,
     this.price,
     this.name,
-     this.onAddToCart,
+    this.onAddToCart,
     required this.onTap,
     required this.product,
   }) : super(key: key);
@@ -51,7 +51,7 @@ class _ProductItemState extends State<ProductItem> {
           variant: BottomSheetType.notice,
           title: 'Added to Wishlist',
           description:
-              '${widget.product.name} has been added to your wishlist.',
+          '${widget.product.name} has been added to your wishlist.',
         );
       } else {
         wishlistService.removeFromWishlist(widget.product);
@@ -61,6 +61,10 @@ class _ProductItemState extends State<ProductItem> {
 
   @override
   Widget build(BuildContext context) {
+    String brandName = widget.product.categories.isNotEmpty
+        ? widget.product.categories.first.name
+        : 'Unknown Brand';
+
     return Container(
       height: 500,
       width: 168,
@@ -75,16 +79,16 @@ class _ProductItemState extends State<ProductItem> {
               onTap: widget.onTap,
               child: Image(
                 image: (widget.product.photos.isNotEmpty
-                        ? NetworkImage(
-                            "https://api.timbu.cloud/images/${widget.product.photos[0].url}")
-                        : Image.asset(
-                            'assets/images/empty_img_placeholders.jpg'))
-                    as ImageProvider,
+                    ? NetworkImage(
+                    "https://api.timbu.cloud/images/${widget.product.photos[0].url}")
+                    : const AssetImage(
+                    'assets/images/empty_img_placeholders.jpg'))
+                as ImageProvider,
                 height: 180,
-                errorBuilder: (context, error, stackTrace) {
-                  return Image.asset(
-                      'assets/images/empty_img_placeholders.jpg');
-                },
+                // errorBuilder: (context, error, stackTrace) {
+                //   return const AssetImage(
+                //       'assets/images/empty_img_placeholders.jpg');
+                // },
               ),
             ),
             Positioned(
@@ -96,28 +100,30 @@ class _ProductItemState extends State<ProductItem> {
                     height: 32,
                     child: isWishlisted
                         ? const Image(
-                            image: AssetImage(
-                                "assets/images/Like_interaction_2.png"),
-                          )
+                      image: AssetImage(
+                          "assets/images/Like_interaction_2.png"),
+                    )
                         : const Image(
-                            image:
-                                AssetImage("assets/images/Like_interaction.png"),
-                          )),
+                      image:
+                      AssetImage("assets/images/Like_interaction.png"),
+                    )),
               ),
             )
           ]),
           const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  widget.product.name,
-                  style: Theme.of(context).textTheme.labelMedium,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
+          Text(
+            brandName,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            widget.product.name,
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+              height: 14.06 / 12,
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -125,16 +131,15 @@ class _ProductItemState extends State<ProductItem> {
               Text(
                 widget.product.currentPrice.toString(),
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: const Color(0xFF0072C6),
-                    ),
+                  color: const Color(0xFF0072C6),
+                ),
               ),
               Container(
                 width: 36,
                 height: 36,
-                decoration:
-                     BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                        color: const Color.fromRGBO(0, 114, 198, 0.12)),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: const Color.fromRGBO(0, 114, 198, 0.12)),
                 alignment: Alignment.center,
                 child: IconButton(
                   onPressed: () {
@@ -144,20 +149,11 @@ class _ProductItemState extends State<ProductItem> {
                   },
                   icon: const Icon(
                     Icons.shopping_basket_outlined,
-
                   ),
                 ),
               ),
             ],
           ),
-          // ElevatedButton(
-          //   onPressed: () {
-          //     cartService.addToCart(widget.product);
-          //     cartService.showProductAddedToCartBottomSheet();
-          //     widget.onAddToCart();
-          //   },
-          //   child: const Text('Add to Cart'),
-          // ),
         ],
       ),
     );

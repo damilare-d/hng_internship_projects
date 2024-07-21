@@ -21,17 +21,20 @@ class ProductCarouselSlider extends StatelessWidget {
 
     return CarouselSlider(
       options:
-          CarouselOptions(height: 200.0, viewportFraction: 0.9, autoPlay: true),
+      CarouselOptions(height: 200.0, viewportFraction: 0.9, autoPlay: true),
       items: viewModel.products.map((product) {
-        String imageUrl =
-            'https://api.timbu.cloud/images/${product.photos.first.url}';
-        return _buildCarouselItem(context, imageUrl, product);
+        String imageUrl = product.photos.isNotEmpty ?
+            'https://api.timbu.cloud/images/${product.photos.first.url}':
+        "https://assets.hermes.com/is/image/hermesproduct/paris-loafer--172368ZAC8-front-1-300-0-1000-1000_b.jpg";
+        String brandName = product.categories.isNotEmpty
+            ? product.categories.first.name
+            : 'Unknown Brand';
+        return _buildCarouselItem(context, imageUrl, product, brandName);
       }).toList(),
     );
   }
 
-  Widget _buildCarouselItem(
-      BuildContext context, String imageUrl, Product product) {
+  Widget _buildCarouselItem(BuildContext context, String imageUrl, Product product, String brandName) {
     return Container(
       //padding: const EdgeInsets.all(16),
       height: 360,
@@ -52,7 +55,7 @@ class ProductCarouselSlider extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Brand name", // Assuming you have a brand name
+                brandName,
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               const SizedBox(height: 8),
@@ -64,8 +67,8 @@ class ProductCarouselSlider extends StatelessWidget {
               Text(
                 '\$${product.currentPrice}',
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: const Color(0xFF0072C6),
-                    ),
+                  color: const Color(0xFF0072C6),
+                ),
               ),
             ],
           ),
