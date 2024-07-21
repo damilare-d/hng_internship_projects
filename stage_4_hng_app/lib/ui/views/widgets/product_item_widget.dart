@@ -85,10 +85,10 @@ class _ProductItemState extends State<ProductItem> {
                     'assets/images/empty_img_placeholders.jpg'))
                 as ImageProvider,
                 height: 180,
-                // errorBuilder: (context, error, stackTrace) {
-                //   return const AssetImage(
-                //       'assets/images/empty_img_placeholders.jpg');
-                // },
+                errorBuilder: (context, error, stackTrace) {
+                  return const Image(image: AssetImage(
+                      'assets/images/empty_img_placeholders.jpg'),);
+                },
               ),
             ),
             Positioned(

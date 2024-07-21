@@ -7,10 +7,13 @@ import 'package:stage_4_hng_app/services/product_detail_service.dart';
 import '../../../models/product_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../../services/cart_service_service.dart';
+
 class SingleProductViewModel extends ReactiveViewModel {
   final ProductDetailService _productDetailService =
       locator<ProductDetailService>();
   final NavigationService _navigationService = locator<NavigationService>();
+  final CartServiceService _cartService = locator<CartServiceService>();
 
   Product? _product;
   Product? get product => _product;
@@ -58,7 +61,10 @@ class SingleProductViewModel extends ReactiveViewModel {
     _navigationService.navigateTo(Routes.singleProductView);
   }
 
+
   void navigateToCartView() {
+    _cartService.addToCart(_product!);
+    _cartService.showProductAddedToCartBottomSheet();
     _navigationService.navigateTo(Routes.cartView);
   }
 
